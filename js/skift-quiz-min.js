@@ -1,0 +1,1 @@
+jQuery(document).ready(function(){var e={},t={},n=jQuery(".skq-winners li").length;if(n)for(var r=0;r<n;r++){e[r+1]=jQuery(".skq-winners li:eq("+r+")").text();t[r+1]=0}jQuery(".skq ul li a").click(function(e){e.preventDefault();jQuery(".skq ul li a").removeClass("selected");jQuery(this).addClass("selected")})});
