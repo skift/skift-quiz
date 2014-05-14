@@ -119,7 +119,7 @@ function endQuiz(){
   $('#question-image').remove();
   $('#submitbutton').remove();
   $('#question').text("You got " + score + " out of " + quiz.length + " correct.");
-  $(document.createElement('h2')).css({'text-align':'center', 'font-size':'7em'}).text(Math.round(score/quiz.length * 100) + '%').insertAfter('#question');
+  $(document.createElement('h2')).attr('id', 'score').css({'text-align':'center', 'font-size':'7em'}).text(Math.round(score/quiz.length * 100) + '%').insertAfter('#question');
 
-  $('#frame').hide().fadeIn(1000);
+  $('#score').hide().fadeIn(1000);
 }
