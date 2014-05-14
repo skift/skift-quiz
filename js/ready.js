@@ -1,9 +1,13 @@
 $(document).ready(function(){
 
-  // trivia quiz initialize
-  initialize();
-
-  // personality quiz initialize
-  // PersonalityQuiz.init();
+    if ( quiz['type'] == 'trivia' ) {
+        // trivia quiz initialize
+        initialize();
+    // } else if ( quiz['type'] == 'personality' ) {
+        // personality quiz initialize
+        // PersonalityQuiz.init();
+    } else {
+        console.log("Something went wrong here.");
+    }
 
 });

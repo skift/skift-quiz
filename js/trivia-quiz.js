@@ -16,8 +16,8 @@ function endQuiz(){
     $('#choices-block').empty();
     $('#question-image').remove();
     $('#submitbutton').remove();
-    $('#question').text("You got " + score + " out of " + quiz.length + " correct.");
-    $(document.createElement('h2')).attr('id', 'score').css({'text-align':'center', 'font-size':'7em'}).text(Math.round(score/quiz.length * 100) + '%').insertAfter('#question');
+    $('#question').text("You got " + score + " out of " + quiz['content'].length + " correct.");
+    $(document.createElement('h2')).attr('id', 'score').css({'text-align':'center', 'font-size':'7em'}).text(Math.round(score/quiz['content'].length * 100) + '%').insertAfter('#question');
 
     $('#score').hide().fadeIn(1000);
 }
@@ -28,28 +28,29 @@ function htmlEncode(value){
 }
 
 function initialize() {
+    console.log('trivia quiz initialized');
     // add title to page
-    if (typeof quiztitle !== 'undefined' && $.type(quiztitle) == 'string') {
-        $(document.createElement('h1')).text(quiztitle).appendTo('#frame');
+    if (typeof quiz['title'] !== 'undefined' && $.type(quiz['title']) == 'string') {
+        $(document.createElement('h1')).text(quiz['title']).appendTo('#frame');
     } else {
         $(document.createElement('h1')).text('Quiz').appendTo('#frame');
     }
 
-    if (typeof quiz !== 'undefined' && $.type(quiz) == 'array') {
+    if (typeof quiz !== 'undefined' && $.type(quiz) == 'object') {
         // add pager
-        $(document.createElement('p')).attr('id','pager').addClass('pager').text('Question 1 of '+quiz.length).appendTo('#frame');
+        $(document.createElement('p')).attr('id','pager').addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('#frame');
 
         // add first question
-        $(document.createElement('h2')).attr('id', 'question').addClass('question').text(quiz[0]['question']).appendTo('#frame');
+        $(document.createElement('h2')).attr('id', 'question').addClass('question').text(quiz['content'][0]['question']).appendTo('#frame');
 
         // add image if present
-        if (quiz[0].hasOwnProperty('image') && quiz[0]['image'] != '') {
-            $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz[0]['image']).appendTo('#frame').fadeIn();
+        if (quiz['content'][0].hasOwnProperty('image') && quiz['content'][0]['image'] != '') {
+            $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][0]['image']).appendTo('#frame').fadeIn();
         }
 
         // add choices-block
         $(document.createElement('ul')).attr('id', 'choices-block').appendTo('#frame');
-        addChoices(quiz[0]['choices'])
+        addChoices(quiz['content'][0]['choices'])
 
         // add submit button
         $(document.createElement('div')).attr('id', 'submitbutton').text('Submit Answer').css({'font-weight':700,'color':'white','padding':'30px 0','text-align':'center'}).appendTo('#frame');
@@ -73,13 +74,13 @@ function nextQuestion(picked) {
 
     // show answer and explanation to last question
     if (lastquestion >= 0) {
-        $('#explanation').append('<br/><br/><h3 style="font-variant: small-caps; text-decoration: underline;">Your Last Answer<h3><br/>').append(quiz[lastquestion]['question']+'<br/><br/>');
+        $('#explanation').append('<br/><br/><h3 style="font-variant: small-caps; text-decoration: underline;">Your Last Answer<h3><br/>').append(quiz['content'][lastquestion]['question']+'<br/><br/>');
 
-        if ( quiz[lastquestion]['choices'][picked] == quiz[lastquestion]['correct'] ) {
-            $('#explanation').append('<p style="color: green;"><strong>Correct!</strong></p>' + ' ' + quiz[lastquestion]['explanation']);
+        if ( quiz['content'][lastquestion]['choices'][picked] == quiz['content'][lastquestion]['correct'] ) {
+            $('#explanation').append('<p style="color: green;"><strong>Correct!</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
             score++;
         } else {
-            $('#explanation').append('<p style="color: red"><strong>Incorrect.</strong></p>' + ' ' + quiz[lastquestion]['explanation']);
+            $('#explanation').append('<p style="color: red"><strong>Incorrect.</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
         }
 
         // first 'Your Last Answer' slides out; the rest fade in
@@ -90,25 +91,25 @@ function nextQuestion(picked) {
         }
     }
 
-  //allow submit button to be used again
+    //allow submit button to be used again
     submission = true;
-    if (quiz[currentquestion] == undefined) {
+    if (quiz['content'][currentquestion] == undefined) {
         endQuiz();
     } else {
-        $('#question').text(quiz[currentquestion]['question']);
-        $('#pager').text("Question " + Number(currentquestion+1) + " of " + quiz.length);
+        $('#question').text(quiz['content'][currentquestion]['question']);
+        $('#pager').text("Question " + Number(currentquestion+1) + " of " + quiz['content'].length);
         
-        if (quiz[currentquestion].hasOwnProperty('image') && quiz[currentquestion]['image'] != '') {
+        if (quiz['content'][currentquestion].hasOwnProperty('image') && quiz['content'][currentquestion]['image'] != '') {
             if ($('#question-image').length == 0) {
-                $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz[currentquestion]['image']).attr('alt', htmlEncode(quiz[currentquestion]['question']));
+                $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
             } else {
-                $('#question-image').attr('src', quiz[currentquestion]['image']).attr('alt', htmlEncode(quiz[currentquestion]['question']));
+                $('#question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
             }
         } else {
             $('#question-image').remove();
         }
 
-    addChoices(quiz[currentquestion]['choices']);
+    addChoices(quiz['content'][currentquestion]['choices']);
     setUpButtons();
 
     }
