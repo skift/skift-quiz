@@ -4,7 +4,7 @@ var currentquestion = 0;
 // in this case there are four.  in this case each integer corresponds to:
 // beach, mountains, country, city
 // when a choice is picked we want to write score[picked]++
-var score = [0, 0, 0, 0];
+// var score = [0, 0, 0, 0];
 
 var submission = true, picked;
 
@@ -134,6 +134,7 @@ var PersonalityQuiz = {
         // find array key of largest score
         var key_of_largest_score = score.indexOf(Math.max.apply(window, score));
 
+        // use key to find corresponding result
         var results = quiz['results'][key_of_largest_score];
 
         $('#question').empty();
@@ -142,8 +143,6 @@ var PersonalityQuiz = {
         $('#question-image').remove();
         $('#submitbutton').remove();
         $('#question').attr('id', 'results').css({'text-align':'center', 'font-size':'7em'}).text("You got " + results + "!");
-        // $(document.createElement('h2')).attr('id', 'score').css({'text-align':'center', 'font-size':'7em'}).text(results);
-        // .insertAfter('#question');
 
         $('#results').hide().fadeIn(1000);
     }
@@ -157,8 +156,11 @@ var PersonalityQuiz = {
 
 
 
-
-
+// doesn't work because if index is 0 (which js reads vaguely as false) the for loop won't run
+// if ($.inArray(2, score)) {
+//     for (i=0; i<score.length; i++)
+//         { console.log(score.indexOf(2)); }
+// }
 
 
 
