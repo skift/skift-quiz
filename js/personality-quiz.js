@@ -1,15 +1,12 @@
 var currentquestion = 0;
 
-// the length of score is dependent upon how many personality types there are
-// in this case there are four.  in this case each integer corresponds to:
-// beach, mountains, country, city
-// when a choice is picked we want to write score[picked]++
-// var score = [0, 0, 0, 0];
-
 var submission = true, picked;
 
 //array to hold choices keys.  use to append keys to the page
 var x = [];
+
+//array to hold choices values (images).
+var y = [];
 
 var PersonalityQuiz = {
 
@@ -29,6 +26,11 @@ var PersonalityQuiz = {
 
             // first question
             $(document.createElement('h2')).attr('id', 'question').addClass('question').text(quiz['content'][0]['question']).appendTo('#personality-frame');
+
+            // add image if present
+            if (quiz['content'][0].hasOwnProperty('image') && quiz['content'][0]['image'] != '') {
+                $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][0]['image']).appendTo('#personality-frame');
+            }
 
             // choices block
             $(document.createElement('ul')).attr('id', 'choices-block').appendTo('#personality-frame');
@@ -50,6 +52,7 @@ var PersonalityQuiz = {
         // get keys from each choice and push into array x (so choices keys can be appended to the page)
         $.each(choices, function(k, v){
             x.push(k);
+            y.push(v);
         })
 
         if (typeof x !== 'undefined' && $.type(x) == 'array') {
@@ -61,7 +64,26 @@ var PersonalityQuiz = {
                     .text(x[i])
                     .appendTo('#choices-block');
             }
+
+            // for (var k in quiz['content'][currentquestion]['choices']) {
+            //     $(document.createElement('img'))
+            //         .addClass('choice choice-box')
+            //         .attr('src', quiz['content'][currentquestion]['choices'][k])
+            //         .appendTo('.choice-box');
+            // }
         }
+
+        // if (typeof y !== 'undefined' && $.type(y) == 'array') {
+        //     $('.picture').empty();
+        //     for (var i=0; i<1; i++) {
+        //         $(document.createElement('img'))
+        //             .addClass('picture')
+        //             .attr('src', y[i])
+        //             .css('width', '200px')
+        //             .appendTo('.choice-box');
+
+        //     }
+        // }
     },
 
     setUpButtons : function() {
@@ -117,22 +139,22 @@ var PersonalityQuiz = {
             PersonalityQuiz.setUpButtons();
         
             // image stuff
-            // if (quiz['content'][currentquestion].hasOwnProperty('image') && quiz['content'][currentquestion]['image'] != '') {
-            //     if ($('#question-image').length == 0) {
-            //         $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
-            //     } else {
-            //         $('#question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
-            //     }
-            // } else {
-            //     $('#question-image').remove();
-            // }
+            if (quiz['content'][currentquestion].hasOwnProperty('image') && quiz['content'][currentquestion]['image'] != '') {
+                if ($('#question-image').length == 0) {
+                    $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
+                } else {
+                    $('#question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
+                }
+            } else {
+                $('#question-image').remove();
+            }
 
         }
     },
 
     endTheQuiz : function(){
         // find array key of largest score
-        var key_of_largest_score = score.indexOf(Math.max.apply(window, score));
+        var key_of_largest_score = score.indexOf(Math.max.apply(Math, score));
 
         // use key to find corresponding result
         var results = quiz['results'][key_of_largest_score];
@@ -148,23 +170,3 @@ var PersonalityQuiz = {
     }
 
 };
-
-
-
-
-
-
-
-
-// doesn't work because if index is 0 (which js reads vaguely as false) the for loop won't run
-// if ($.inArray(2, score)) {
-//     for (i=0; i<score.length; i++)
-//         { console.log(score.indexOf(2)); }
-// }
-
-
-
-
-
-
-
