@@ -1,10 +1,103 @@
+@import "partials/base";
+
 body {
-	font-family: Helvetica;
+	margin: 20px;
 	font-size: 16px;
 }
 
-.skq ul li a {
-	&.selected {
-		color: red;
+h1, h2 {
+	font-weight: normal;
+}
+
+h1 {
+	border-bottom: 1px solid $gray9;
+	text-align: left;
+	font-size: 2em;
+	font-family: $type-display;
+}
+
+h2 {
+	margin: 20px 0;
+	font-size: 1.5em;
+	font-family: $type-body;
+}
+
+img.question-image {
+	display: block;
+	margin: 10px auto;
+	max-width: 250px;
+	width: 100%;
+	height: auto;
+	border: 1px solid $grayC;
+}
+
+#personality-quiz {
+
+	li {
+		@include cta;
+	}
+
+	ol, ul {
+		list-style: none;
+		padding-left: 0;
+	}
+
+	p.pager {
+		margin: 5px 0;
+		font-family: $type-body;
+		color: $midgray;
+	}
+
+	strong {
+		font-weight: 700;
+	}
+
+	#choice-block {
+		display: block;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	#explanation {
+		position:  relative;
+		left:  0px;
+		z-index:  -1;
+		display:  inline-block;
+		float: left;
+		overflow: hidden;
+		margin: 3px;
+		padding: 0 0 20px 0;
+		width:  400px;
+		height:  100%;
+		height:  800px;
+		background: $lightyellow;
+		text-align:  center;
+		font-size:  1.3em;
+		line-height:  1.3;
+	}
+
+	#frame {
+		width:  600px;
+		background:  #FFE099;
+		padding:  10px;
+		margin:  3px;
+		position:  absolute;
+		left:  0;
+		height:  800px;
+	}
+
+	#submitbutton {
+		@include cta;
+		cursor:  pointer;
+		text-align:  center;
+	}
+
+	.choice-box {
+		width: auto;
+		text-align: center;
+		margin: 5px auto;
+		clear: both;
+		cursor: pointer;
 	}
 }

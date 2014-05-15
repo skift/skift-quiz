@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     if ( quiz['type'] == 'trivia' ) {
         // trivia quiz initialize
-        // initialize();
+        initialize();
     } else if ( quiz['type'] == 'personality' ) {
         // set up global variable score
         score = [];

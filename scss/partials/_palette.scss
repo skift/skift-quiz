@@ -1,0 +1,50 @@
+// ------------------------------------
+// Standard colors
+// ------------------------------------
+
+$white: #fff;
+$black: #000;
+
+$gray1c: #1c1c1c;
+$gray1: #211f1f;
+$gray2: #232323;
+$gray3: #333;
+$gray4: #484747;
+$gray5: #585858;
+$gray8: #8c8c8c;
+$gray9: #999;
+$grayB: #b1b1b1;
+$grayC: #ccc;
+$grayD: #dcddde;
+
+$darkgray: $gray1;
+$midgray: $gray9;
+$lightgray: $grayC;
+
+$offwhite-light: #f3f4f4;
+$offwhite-medium: #ebebec;
+$offwhite-dark: #e5e5e5;
+
+// ------------------------------------
+// Skift palette
+// ------------------------------------
+
+$yellow: #ffb900;
+$lightyellow: #ffdc80;
+$darkyellow: #e2a300;
+$orangeyellow: #f1a004;
+$blue: #3691ce;
+$lightblue: #5fb5ee;
+$darkblue: #2b74a5;
+$darkerblue: #215a7f;
+
+// ------------------------------------
+// Background textures
+// ------------------------------------
+
+$lined: url('../img/redesign/bg/lined.png');
+$lined-transparent: url('../img/redesign/bg/lined-t.png');
+$lined-white: url('../img/redesign/bg/lined-w.png');
+$lined-gray: url('../img/redesign/bg/lined-g.png');
+$noise: url('../img/redesign/bg/noise.png');
+$noise-dark: url('../img/redesign/bg/noise-dark.png');

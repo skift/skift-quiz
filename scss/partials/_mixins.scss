@@ -1,0 +1,235 @@
+// ------------------------------------
+// Mixins
+// ------------------------------------
+
+@mixin newsletter-signup($email-width: 50%, $submit-width: 50%) {
+	@include container;
+	clear: both;
+	width: 90%;
+	height: 40px;
+	padding: 0 5%;
+	.email {
+		display: inline-block;
+		float: left;
+		width: $email-width;
+		input[type="email"], input[type="text"] {
+			width: 100%;
+			line-height: 1.5em;
+		}
+	}
+	.submit {
+		display: inline-block;
+		float: right;
+		width: $submit-width;
+		input[type="submit"] {
+			width: 100%;
+			background: $noise $darkgray;
+			line-height: 1.5em;
+			&:hover {
+				background-image: none;
+			}
+		}
+	}
+}
+
+@mixin sharing($height: 60px, $sprite-size: 20px, $mobile: 'false') {
+	display: inline-block;
+	width: 100%;
+	height: $height;
+	padding: 0;
+	border: 0;
+	background: $offwhite-medium;
+	line-height: 60px;
+	p {
+		display: inline-block;
+		overflow: hidden;
+		height: 60px;
+		margin-top: 0;
+		margin-bottom: 0;
+		text-align: center;
+		text-indent: 2px;
+		font-weight: 600;
+		font-style: italic;
+		font-size: .875em;
+		font-family: $type-display;
+	}
+	ul {
+		display: table;
+		width: 100%;
+		margin: 0;
+		vertical-align: middle;
+		line-height: 50px;
+		li {
+			display: table-cell;
+			padding: (($height - ($sprite-size * 2)) / 2) 0;
+			width: 25%;
+			border: 0;
+			&:first-child {
+				border-left: 0;
+			}
+			&:last-child {
+				border-right: 0;
+			}
+			a {
+				display: block;
+				width: $sprite-size;
+				height: $sprite-size;
+				margin: auto;
+				padding: $sprite-size / 2;
+				border-radius: $sprite-size * 2;
+				background: url('../img/redesign/bg/noise.png') $darkgray;
+				div {
+					width: $sprite-size;
+					height: $sprite-size;
+					margin: auto;
+					background: url('../img/redesign/sprites/social-sprites.png') center no-repeat;
+					color: transparent;
+					font-size: 0;
+					@if $sprite-size == 15px {
+						&.twitter {
+							background-position: 0 -160px;
+						}
+						&.facebook {
+							background-position: 0 -175px;
+						}
+						&.linkedin {
+							background-position: 0 -190px;
+						}
+						&.email {
+							background-position: 0 -300px;
+						}
+					}
+
+					@else {
+						&.twitter {
+							background-position: 0 0;
+						}
+						&.facebook {
+							background-position: 0 -20px;
+						}
+						&.linkedin {
+							background-position: 0 -40px;
+						}
+						&.email {
+							background-position: 0 -280px;
+						}
+					}
+
+				}
+				&:hover {
+					div {
+						@if $sprite-size == 15px {
+							&.twitter {
+								background-position: 0 -220px;
+							}
+							&.facebook {
+								background-position: 0 -235px;
+							}
+							&.linkedin {
+								background-position: 0 -250px;
+							}
+							&.email {
+								background-position: 0 -335px;
+							}
+
+						}
+						@else {
+							&.twitter {
+								background-position: 0 -80px;
+							}
+							&.facebook {
+								background-position: 0 -100px;
+							}
+							&.linkedin {
+								background-position: 0 -120px;
+							}
+							&.email {
+								background-position: 0 -315px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	@if $mobile == 'true' {
+		border-width: 1px 0;
+		border-style: solid;
+		border-top-color: $grayC;
+		border-bottom-color: $offwhite-dark;
+		p {
+			display: none;
+		}
+		ul {
+			li {
+				border-width: 0 1px;
+				border-style: solid;
+				border-right-color: $offwhite-dark;
+				border-left-color: $offwhite-light;
+			}
+		}
+	}
+}
+
+@mixin sponsored($background-color: $darkgray) {
+	margin: 0;
+	font-weight: normal;
+	font-size: 14px;
+	font-family: $type-body;
+	line-height: 1em;
+	span {
+		margin: 0;
+	}
+	.copy {
+		display: inline-block;
+		padding: .25em .5em;
+		background: $background-color;
+		color: $white;
+		text-transform: uppercase;
+		font-size: .875em;
+		.about {
+			display: inline-block;
+			width: .75em;
+			height: .75em;
+			margin: 0 0 0 .5em;
+			padding: .25em;
+			border-radius: .75em;
+			background: $yellow;
+			vertical-align: middle;
+			text-align: center;
+			line-height: 1em;
+		}
+		.declaration {
+			position: absolute;
+			display: none;
+			z-index: 100;
+		}
+		&:hover .declaration {
+			display: block;
+			clear: both;
+			padding: .5em;
+			background: $background-color;
+			text-transform: none;
+			white-space: nowrap;
+			font-size: 10px;
+		}
+	}
+}
+
+@mixin cta {
+	display: inline-block;
+	padding: .5em 1em;
+	border-top: 1px solid $lightblue;
+	border-bottom: 1px solid $darkblue;
+	background: $blue;
+	color: $white;
+	text-align: center;
+	text-decoration: none;
+	font-weight: 100;
+	margin: .5em 0;
+	&:hover {
+		background: $darkblue;
+		border-bottom: 1px solid $lightblue;
+		border-top: 1px solid $darkblue;
+	}
+}
