@@ -28,7 +28,6 @@ function htmlEncode(value){
 }
 
 function initialize() {
-    console.log('trivia quiz initialized');
     // add title to page
     if (typeof quiz['title'] !== 'undefined' && $.type(quiz['title']) == 'string') {
         $(document.createElement('h1')).text(quiz['title']).appendTo('#frame');
@@ -37,6 +36,7 @@ function initialize() {
     }
 
     if (typeof quiz !== 'undefined' && $.type(quiz) == 'object') {
+
         // add pager
         $(document.createElement('p')).attr('id','pager').addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('#frame');
 
@@ -54,11 +54,13 @@ function initialize() {
 
         // add submit button
         $(document.createElement('div')).attr('id', 'submitbutton').text('Submit Answer').css({'font-weight':700,'color':'white','padding':'30px 0','text-align':'center'}).appendTo('#frame');
+
+        // set up choices buttons and submit button
         setUpButtons();
 
-        //hide explanation div on first question
-        $('#explanation').hide().fadeIn(1000);
+        // fade in frame and explanation; explanation is behind frame so isn't visible until question #2.
         $('#frame').hide().fadeIn(1000);
+        $('#explanation').hide().fadeIn(1000);
     }
 }
 
@@ -91,8 +93,10 @@ function nextQuestion(picked) {
         }
     }
 
-    //allow submit button to be used again
+    // reset global variable submission
     submission = true;
+
+    // end quiz if there are no more questions
     if (quiz['content'][currentquestion] == undefined) {
         endQuiz();
     } else {
@@ -118,20 +122,27 @@ function nextQuestion(picked) {
 
 // set up event listeners and highlighting on buttons
 function setUpButtons(){
-  //add highlight to choices on mouseover and remove on mouseout
+
+    // add highlight to choices on mouseover and remove on mouseout
     $('.choice').mouseover(function(){ $(this).css({'background-color' : 'rgb(202, 202, 202)'}); })
     $('.choice').mouseout(function(){ $(this).css({'background-color' : '#FFE099;'}); })
+
+    // event listeners
     $('.choice').click(function(){
+
+        // grab data-index and change color of choice when picked
         var picked = $(this).attr('data-index');
         $('.choice').removeAttr('style').off('mouseover mouseout');
         $(this).css({'border-color':'#222','font-weight':700,'background-color':'rgb(250, 174, 0)'});
-        if(submission) {
+
+        // submit button click triggers nextQuestion and passes choice's data-index (via var picked)
+        if (submission) {
             submission = false;
-            $('#submitbutton').css({'color':'white'}).click(function(){
+            $('#submitbutton').click(function(){
                 $('.choice').off('click');
                 $(this).off('click');
                 nextQuestion(picked);
             })
-        }
+        };
     })
 }
