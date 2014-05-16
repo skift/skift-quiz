@@ -683,7 +683,8 @@ body {
   padding: 0 20px;
   font-size: 16px;
   line-height: 1.5em;
-  font-family: "Proxima Nova", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; }
+  font-family: "Proxima Nova", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  height: 2000px; }
 
 .skift-quiz {
   margin: 1em 0;
@@ -744,6 +745,8 @@ body {
       background: #2b74a5;
       border-bottom: 1px solid #5fb5ee;
       border-top: 1px solid #2b74a5; }
+  .skift-quiz .explanation {
+    display: none; }
 
 #personality-quiz li {
   display: inline-block;
