@@ -1,5 +1,14 @@
-// Global Variable Quiz //
-var quiz = {};
+////////////////////////////////////////////////////////////
+///////////// GLOBAL VARIABLES /////////////////////////////
+////////////////////////////////////////////////////////////
+
+var quiz = {},
+    currentquestion = 0,
+    score = 0,                  // score for trivia quiz
+    x = [],                     // array x to hold choices keys.  use to append keys to the page
+    y = [],                     // array y to hold choices values (images)
+    personality_score = [],     // score for personality quiz
+    submission = true, picked;
 
 
 /////////////////////////////////////////////////////////////
@@ -10,23 +19,23 @@ var quiz = {};
 // append choices to choices-block
 function addChoices(choices) {
     if (typeof choices !== 'undefined' && $.type(choices) == 'array') {
-        $('#choices-block').empty();
+        $('.choices-block').empty();
         for (var i=0; i<choices.length; i++){
-            $(document.createElement('li')).addClass('choice choice-box').attr('data-index', i).text(choices[i]).appendTo('#choices-block');
+            $(document.createElement('li')).addClass('choice choice-box').attr('data-index', i).text(choices[i]).appendTo('.choices-block');
         }
     }
 }
 
 function endQuiz(){
-    $('#question').empty();
-    $('#pager').empty();
-    $('#choices-block').empty();
-    $('#question-image').remove();
+    $('.question').empty();
+    $('.pager').empty();
+    $('.choices-block').empty();
+    $('.question-image').remove();
     $('#submitbutton').remove();
-    $('#question').text("You got " + score + " out of " + quiz['content'].length + " correct.");
-    $(document.createElement('h2')).attr('id', 'score').css({'text-align':'center', 'font-size':'7em'}).text(Math.round(score/quiz['content'].length * 100) + '%').insertAfter('#question');
+    $('.question').text("You got " + score + " out of " + quiz['content'].length + " correct.");
+    $(document.createElement('h2')).addClass('score').css({'text-align':'center', 'font-size':'7em'}).text(Math.round(score/quiz['content'].length * 100) + '%').insertAfter('.question');
 
-    $('#score').hide().fadeIn(1000);
+    $('.score').hide().fadeIn(1000);
 }
 
 // helper function to create elements on the DOM
@@ -37,37 +46,44 @@ function htmlEncode(value){
 function initialize() {
     // add title to page
     if (typeof quiz['title'] !== 'undefined' && $.type(quiz['title']) == 'string') {
-        $(document.createElement('h1')).text(quiz['title']).appendTo('#frame');
+        $(document.createElement('h1')).text(quiz['title']).appendTo('.quiz-frame');
     } else {
-        $(document.createElement('h1')).text('Quiz').appendTo('#frame');
+        $(document.createElement('h1')).text('Quiz').appendTo('.quiz-frame');
     }
 
     if (typeof quiz !== 'undefined' && $.type(quiz) == 'object') {
 
         // add pager
-        $(document.createElement('p')).attr('id','pager').addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('#frame');
+        $(document.createElement('p')).addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('.quiz-frame');
 
         // add first question
-        $(document.createElement('h2')).attr('id', 'question').addClass('question').text(quiz['content'][0]['question']).appendTo('#frame');
+        $(document.createElement('p')).addClass('question').text(quiz['content'][0]['question']).appendTo('.quiz-frame');
 
         // add image if present
         if (quiz['content'][0].hasOwnProperty('image') && quiz['content'][0]['image'] != '') {
-            $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][0]['image']).appendTo('#frame').fadeIn();
+            $(document.createElement('img')).addClass('question-image').attr('src', quiz['content'][0]['image']).appendTo('.quiz-frame').fadeIn();
         }
 
         // add choices-block
-        $(document.createElement('ul')).attr('id', 'choices-block').appendTo('#frame');
+        $(document.createElement('ul')).addClass('choices-block').appendTo('.quiz-frame');
         addChoices(quiz['content'][0]['choices'])
 
         // add submit button
-        $(document.createElement('div')).attr('id', 'submitbutton').text('Submit Answer').css({'font-weight':700,'color':'white','padding':'30px 0','text-align':'center'}).appendTo('#frame');
+        $(document.createElement('div'))
+            .addClass('submit')
+            .text('Submit Answer')
+            // .css({'font-weight':700,'color':'white','padding':'30px 0','text-align':'center'})
+            .appendTo('.quiz-frame');
+
+        // add submit-button anchor link
+        $(document.createElement('a')).addClass('submit-button').attr('href', '').appendTo('.submit');
 
         // set up choices buttons and submit button
         setUpButtons();
 
         // fade in frame and explanation; explanation is behind frame so isn't visible until question #2.
-        $('#frame').hide().fadeIn(1000);
-        $('#explanation').hide().fadeIn(1000);
+        $('.quiz-frame').hide().fadeIn(1000);
+        $('.explanation').hide().fadeIn(1000);
     }
 }
 
@@ -75,7 +91,7 @@ function initialize() {
 //     1. show whether user's last answer was correct and show explanation, and
 //     2. pose next question
 function nextQuestion(picked) {
-    $('#explanation').empty();
+    $('.explanation').empty();
 
     // iterate to next question and set up var lastquestion so we can access last question results
     currentquestion++;
@@ -83,20 +99,20 @@ function nextQuestion(picked) {
 
     // show answer and explanation to last question
     if (lastquestion >= 0) {
-        $('#explanation').append('<br/><br/><h3 style="font-variant: small-caps; text-decoration: underline;">Your Last Answer<h3><br/>').append(quiz['content'][lastquestion]['question']+'<br/><br/>');
+        $('.explanation').append('<br/><br/><h3 style="font-variant: small-caps; text-decoration: underline;">Your Last Answer<h3><br/>').append(quiz['content'][lastquestion]['question']+'<br/><br/>');
 
         if ( quiz['content'][lastquestion]['choices'][picked] == quiz['content'][lastquestion]['correct'] ) {
-            $('#explanation').append('<p style="color: green;"><strong>Correct!</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
+            $('.explanation').append('<p style="color: green;"><strong>Correct!</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
             score++;
         } else {
-            $('#explanation').append('<p style="color: red"><strong>Incorrect.</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
+            $('.explanation').append('<p style="color: red"><strong>Incorrect.</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
         }
 
         // first 'Your Last Answer' slides out; the rest fade in
         if (lastquestion == 0) {
-            $('#frame').animate({left : "400px"}, 1000);
+            $('.quiz-frame').animate({left : "400px"}, 1000);
         } else {
-            $('#explanation').hide().fadeIn(1000);
+            $('.explanation').hide().fadeIn(1000);
         }
     }
 
@@ -107,17 +123,17 @@ function nextQuestion(picked) {
     if (quiz['content'][currentquestion] == undefined) {
         endQuiz();
     } else {
-        $('#question').text(quiz['content'][currentquestion]['question']);
-        $('#pager').text("Question " + Number(currentquestion+1) + " of " + quiz['content'].length);
+        $('.question').text(quiz['content'][currentquestion]['question']);
+        $('.pager').text("Question " + Number(currentquestion+1) + " of " + quiz['content'].length);
         
         if (quiz['content'][currentquestion].hasOwnProperty('image') && quiz['content'][currentquestion]['image'] != '') {
-            if ($('#question-image').length == 0) {
-                $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
+            if ($('.question-image').length == 0) {
+                $(document.createElement('img')).addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
             } else {
-                $('#question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
+                $('.question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
             }
         } else {
-            $('#question-image').remove();
+            $('.question-image').remove();
         }
 
     addChoices(quiz['content'][currentquestion]['choices']);
@@ -260,7 +276,7 @@ var PersonalityQuiz = {
         currentquestion++
 
         // place choice score array (in the right bucket)
-        score[picked]++
+        personality_score[picked]++
 
         // reset global variable submission
         submission = true;
@@ -300,7 +316,7 @@ var PersonalityQuiz = {
 
     endTheQuiz : function(){
         // find array key of largest score
-        var key_of_largest_score = score.indexOf(Math.max.apply(Math, score));
+        var key_of_largest_score = personality_score.indexOf(Math.max.apply(Math, personality_score));
 
         // use key to find corresponding result
         var results = quiz['results'][key_of_largest_score];
@@ -330,15 +346,11 @@ $(document).ready(function() {
     quiz = jQuery.parseJSON(jQuery('.skift-quiz .skift-quiz-object').text());
 
     if ( quiz['type'] == 'trivia' ) {
-        var currentquestion = 0, score = 0, submission = true, picked;
         initialize();
     } else if ( quiz['type'] == 'personality' ) {
-        //x array to hold choices keys.  use to append keys to the page
-        //y array to hold choices values (images)
-        var currentquestion = 0, x = [], y = [], score = [], submission = true, picked;
         // the length of score is dependent upon how many personality types there are
         for (i=0; i<quiz['results'].length; i++) {
-            score.push(0);
+            personality_score.push(0);
         }
         // personality quiz initialize
         PersonalityQuiz.init();
@@ -348,11 +360,4 @@ $(document).ready(function() {
     }
 
 });
-
-
-
-
-
-
-
 
