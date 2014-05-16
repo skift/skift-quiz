@@ -7,6 +7,7 @@ body {
 	font-size: 16px;
 	line-height: 1.5em;
 	font-family: $type-body;
+	height: 2000px;
 }
 
 // Skift Quiz styling
@@ -76,6 +77,9 @@ $red: #ce3636;
 		.submit-button {
 			@include cta;	
 		}
+	}
+	.explanation {
+		display: none;
 	}
 }
 
