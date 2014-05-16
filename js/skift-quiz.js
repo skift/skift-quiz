@@ -76,7 +76,7 @@ function initialize() {
             .appendTo('.quiz-frame');
 
         // add submit-button anchor link
-        $(document.createElement('a')).addClass('submit-button').attr('href', '').appendTo('.submit');
+        $(document.createElement('a')).addClass('submit-button').attr('href', '#').appendTo('.submit');
 
         // set up choices buttons and submit button
         setUpButtons();
