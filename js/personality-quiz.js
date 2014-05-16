@@ -58,32 +58,19 @@ var PersonalityQuiz = {
         if (typeof x !== 'undefined' && $.type(x) == 'array') {
             $('#choices-block').empty();
             for (var i=0; i<x.length; i++){
+                // append choices
                 $(document.createElement('li'))
                     .addClass('choice choice-box')
                     .attr('data-index', i)
                     .text(x[i])
                     .appendTo('#choices-block');
+                // append choice photos
+                $(document.createElement('img'))
+                    .attr('src', y[i])
+                    .addClass('picture')
+                    .appendTo('#choices-block');
             }
-
-            // for (var k in quiz['content'][currentquestion]['choices']) {
-            //     $(document.createElement('img'))
-            //         .addClass('choice choice-box')
-            //         .attr('src', quiz['content'][currentquestion]['choices'][k])
-            //         .appendTo('.choice-box');
-            // }
         }
-
-        // if (typeof y !== 'undefined' && $.type(y) == 'array') {
-        //     $('.picture').empty();
-        //     for (var i=0; i<1; i++) {
-        //         $(document.createElement('img'))
-        //             .addClass('picture')
-        //             .attr('src', y[i])
-        //             .css('width', '200px')
-        //             .appendTo('.choice-box');
-
-        //     }
-        // }
     },
 
     setUpButtons : function() {
@@ -121,6 +108,9 @@ var PersonalityQuiz = {
 
         // reset global variable submission
         submission = true;
+
+        // reset global variable y so it can hold new choices' pictures
+        y = [];
 
         if (quiz['content'][currentquestion] == undefined) {
             // end quiz if there are no more questions

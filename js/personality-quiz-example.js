@@ -19,10 +19,10 @@ var quiz =
             "question"      :   "What animal best represents you?",
             "image"         :   "http://www.likecool.com/Gear/Pic/Weird%20animals/Weird-animals-1.jpg",
             "choices"       :   {
-                                    "Crab" : "http://2.bp.blogspot.com/-Y8owo7Yv23s/TiYXjkabCMI/AAAAAAAAATs/8W795e0v-9o/s1600/coasta-holiday-sand-beach.jpg",
-                                    "Goat" : "http://toptotoppest.com/wp-content/uploads/2013/06/ice-snowy-rocks-mountains-hd-background-wallpapers-widescreen-high-resolutions-025.jpg",
-                                    "Horse" : "http://i1.trekearth.com/photos/37033/100_0185.jpg",
-                                    "Pigeon" : "http://d1lalstwiwz2br.cloudfront.net/images_users/tiny_mce/ThatGirlAndrea/phpuNbRBy.jpeg"
+                                    "Crab" : "http://images.nationalgeographic.com/wpf/media-live/photos/000/246/cache/christmas-island-red-crab_24694_600x450.jpg",
+                                    "Goat" : "http://upload.wikimedia.org/wikipedia/commons/1/16/Mountain_Goat_Mount_Massive.JPG",
+                                    "Horse" : "http://www.romagazine.eu/wp-content/uploads/2013/01/horse-1.jpg",
+                                    "Pigeon" : "http://eofdreams.com/data_images/dreams/pigeon/pigeon-10.jpg"
             },
             "correct"       :   "",
             "explanation"   :   ""
