@@ -15,10 +15,17 @@ $green: #48ce36;
 $red: #ce3636;
 
 .skift-quiz {
+	margin: 1em 0;
+	padding: 1em 0;
+	background: $lined $white;
 	max-width: 500px;
+	.quiz-frame, .quiz-container {
+		background: $white;
+	}
 	ul {
 		list-style: none;
 		padding-left: 0;
+		margin: 0;
 	}
 	.title {
 		font-family: $type-display;

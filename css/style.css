@@ -686,10 +686,16 @@ body {
   font-family: "Proxima Nova", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; }
 
 .skift-quiz {
+  margin: 1em 0;
+  padding: 1em 0;
+  background: url("../img/redesign/bg/lined.png") white;
   max-width: 500px; }
+  .skift-quiz .quiz-frame, .skift-quiz .quiz-container {
+    background: white; }
   .skift-quiz ul {
     list-style: none;
-    padding-left: 0; }
+    padding-left: 0;
+    margin: 0; }
   .skift-quiz .title {
     font-family: Adelle, "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
     border-bottom: 1px solid #999999;
