@@ -1,37 +1,73 @@
 @import "partials/base";
 
+// Static only, do not migrate to final:
+
 body {
-	margin: 20px;
+	padding: 20px 20px 0 20px;
 	font-size: 16px;
 }
 
-h1, h2 {
-	font-weight: normal;
-}
+.skift-quiz {
+	ul {
+		list-style: none;
+		padding-left: 0;
+	}
+	.title {
+		font-family: $type-display;
+		border-bottom: 1px solid $gray9;
+		font-size: 2em;
+	}
+	.pager {
+		font-size: .825em;
+		color: $gray9;
+		float: right;
+	}
+	.question {
+		font-size: 1.5em;
+	}
+	.question-image {
 
-h1 {
-	border-bottom: 1px solid $gray9;
-	text-align: left;
-	font-size: 2em;
-	font-family: $type-display;
-}
+	}
 
-h2 {
-	margin: 20px 0;
-	font-size: 1.5em;
-	font-family: $type-body;
 }
 
 img {
-	.question-image {
-		display: block;
-		margin: 10px auto;
-		max-width: 250px;
-		width: 100%;
-		height: auto;
-		border: 1px solid $grayC;
-	}
+	max-width: 300px;
+	max-height: 200px;
 }
+
+// body {
+// 	margin: 20px;
+// 	font-size: 16px;
+// }
+
+// h1, h2 {
+// 	font-weight: normal;
+// }
+
+// h1 {
+// 	border-bottom: 1px solid $gray9;
+// 	text-align: left;
+// 	font-size: 2em;
+// 	font-family: $type-display;
+// }
+
+// h2 {
+// 	margin: 20px 0;
+// 	font-size: 1.5em;
+// 	font-family: $type-body;
+// }
+
+// img {
+// 	.question-image {
+// 		display: block;
+// 		margin: 10px auto;
+// 		max-width: 250px;
+// 		width: 100%;
+// 		height: auto;
+// 		border: 1px solid $grayC;
+// 	}
+// }
 
 #personality-quiz {
 
@@ -134,3 +170,5 @@ img {
 	// }
 
 }
+
+
