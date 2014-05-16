@@ -1,25 +1,12 @@
-<!-- old markup -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Skift Quiz Prototype</title>
+	<link rel="stylesheet" href="css/style.css">
 
-<div id="personality-quiz" class="skift-quiz">
-  <div id="personality-frame">
-	  <h1>Where should you vacation this summer?</h1>
-	  <p id="pager" class="pager">Question 4 of 5</p>
-	  <h2 id="question" class="question">What kind of vacation sounds more fun to you?</h2>
-
-	  <img id="question-image" class="question-image" src="http://www.mccormicktravel.com/family-fun/family-fun.jpg" alt="What kind of vacation sounds more fun to you?">
-
-	  <ul id="choices-block">
-	  	<li class="choice choice-box" data-index="0">Fun on the beach</li>
-	  	<img class="picture" src="http://2.bp.blogspot.com/-Y8owo7Yv23s/TiYXjkabCMI/AAAAAAAAATs/8W795e0v-9o/s1600/coasta-holiday-sand-beach.jpg">
-	  	<li class="choice choice-box" data-index="1">Fun in the mountains</li>
-	  	<img class="picture" src="http://toptotoppest.com/wp-content/uploads/2013/06/ice-snowy-rocks-mountains-hd-background-wallpapers-widescreen-high-resolutions-025.jpg">
-	  	<li class="choice choice-box" data-index="2">Fun on the farm</li>
-	  	<img class="picture" src="http://i1.trekearth.com/photos/37033/100_0185.jpg">
-	  	<li class="choice choice-box" data-index="3">Fun on the town</li><img class="picture" src="http://d1lalstwiwz2br.cloudfront.net/images_users/tiny_mce/ThatGirlAndrea/phpuNbRBy.jpeg">
-	  </ul>
-	  <div id="submitbutton">Submit Answer</div>
-  </div>
-</div>
+</head>
+<body>
 
 <!-- new markup -->
 
@@ -28,16 +15,19 @@
 		<p class="title">Where should you vacation this summer?</p>
 		<p class="pager">Question X of X</p>
 		<p class="question">What kind of vacation?</p>
-		<img src="#" alt="" class="question-image">
+		<img src="http://placekitten.com/500/200" alt="" class="question-image">
 
 		<ul class="choices-block">
-			<li><a href="#" class="choice"><img src="" alt="">Lorem ipsum dolor sit amet.</img></a></li>
-			<li><a href="#" class="choice"><img src="" alt="">Incidunt ipsa iusto temporibus dolorem.</img></a></li>
-			<li><a href="#" class="choice"><img src="" alt="">Nisi blanditiis quam dolores sequi.</img></a></li>
-			<li><a href="#" class="choice"><img src="" alt="">Deleniti commodi odit aliquid excepturi.</img></a></li>
-			<li><a href="#" class="choice"><img src="" alt="">Consequuntur, voluptates unde aut sint!</img></a></li>
+			<li><a href="#" class="choice selected" data-index="1"><span class="box">&#9745;</span>Lorem ipsum dolor sit amet.
+			<img src="http://placekitten.com/300/200" alt=""></a></li>
+			<li><a href="#" class="choice"><span class="box">&#9744;</span>Incidunt ipsa iusto temporibus dolorem.
+			<img src="http://placekitten.com/300/200" alt=""></a></li>
+			<li><a href="#" class="choice"><span class="box">&#9744;</span>Nisi blanditiis quam dolores sequi.
+			<img src="http://placekitten.com/300/200" alt=""></a></li>
+			<li><a href="#" class="choice"><span class="box">&#9744;</span>Deleniti commodi odit aliquid excepturi.
+			<img src="http://placekitten.com/300/200" alt=""></a></li>
+			<li><a href="#" class="choice"><span class="box">&#9744;</span>Consequuntur, voluptates unde aut sint!
+			<img src="http://placekitten.com/300/200" alt=""></a></li>
 		</ul>
-		<div class="submit"><a href="" class="submit-button"></a></div>
+		<div class="submit"><a href="" class="submit-button">Next Question</a></div>
 	</div>
-
-</div>
