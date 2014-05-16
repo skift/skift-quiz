@@ -729,6 +729,15 @@ img.question-image {
   color: #999999; }
 #personality-quiz strong {
   font-weight: 700; }
+#personality-quiz .choice-box {
+  float: left;
+  display: block;
+  max-width: 300px;
+  width: auto;
+  text-align: center;
+  margin: 5px auto;
+  clear: both;
+  cursor: pointer; }
 #personality-quiz #choice-block {
   display: block;
   margin: 0;
@@ -769,15 +778,11 @@ img.question-image {
   text-decoration: none;
   font-weight: 100;
   margin: .5em 0;
+  clear: both;
+  float: left;
   cursor: pointer;
   text-align: center; }
   #personality-quiz #submitbutton:hover {
     background: #2b74a5;
     border-bottom: 1px solid #5fb5ee;
     border-top: 1px solid #2b74a5; }
-#personality-quiz .choice-box {
-  width: auto;
-  text-align: center;
-  margin: 5px auto;
-  clear: both;
-  cursor: pointer; }

@@ -1,8 +1,12 @@
-$(document).ready(function(){
+var quiz = {};
+
+$(document).ready(function() {
+
+    quiz = jQuery.parseJSON(jQuery('.skift-quiz .skift-quiz-object').text());
 
     if ( quiz['type'] == 'trivia' ) {
         // trivia quiz initialize
-        initialize();
+        // initialize();
     } else if ( quiz['type'] == 'personality' ) {
         // set up global variable score
         score = [];
@@ -15,7 +19,7 @@ $(document).ready(function(){
         // personality quiz initialize
         PersonalityQuiz.init();
     } else {
-        console.log("Something went wrong here.");
+        console.log("Initializing conditional failed.");
     }
 
 });

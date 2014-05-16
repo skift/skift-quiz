@@ -52,6 +52,17 @@ img.question-image {
 		font-weight: 700;
 	}
 
+	.choice-box {
+		float: left;
+		display: block;
+		max-width: 300px;
+		width: auto;
+		text-align: center;
+		margin: 5px auto;
+		clear: both;
+		cursor: pointer;
+	}
+
 	#choice-block {
 		display: block;
 		margin: 0;
@@ -89,15 +100,11 @@ img.question-image {
 
 	#submitbutton {
 		@include cta;
+		clear: both;
+		float: left;
 		cursor:  pointer;
 		text-align:  center;
 	}
 
-	.choice-box {
-		width: auto;
-		text-align: center;
-		margin: 5px auto;
-		clear: both;
-		cursor: pointer;
-	}
+
 }
