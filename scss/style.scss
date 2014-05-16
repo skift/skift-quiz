@@ -22,13 +22,15 @@ h2 {
 	font-family: $type-body;
 }
 
-img.question-image {
-	display: block;
-	margin: 10px auto;
-	max-width: 250px;
-	width: 100%;
-	height: auto;
-	border: 1px solid $grayC;
+img {
+	.question-image {
+		display: block;
+		margin: 10px auto;
+		max-width: 250px;
+		width: 100%;
+		height: auto;
+		border: 1px solid $grayC;
+	}
 }
 
 #personality-quiz {
@@ -52,16 +54,7 @@ img.question-image {
 		font-weight: 700;
 	}
 
-	.choice-box {
-		float: left;
-		display: block;
-		max-width: 300px;
-		width: auto;
-		text-align: center;
-		margin: 5px auto;
-		clear: both;
-		cursor: pointer;
-	}
+
 
 	#choice-block {
 		display: block;
@@ -106,5 +99,38 @@ img.question-image {
 		text-align:  center;
 	}
 
+	.choice-box {
+		width: auto;
+		text-align: center;
+		margin: 5px auto;
+		clear: both;
+		cursor: pointer;
+	}
+
+	// .choice-box {
+	// 	float: left;
+	// 	display: block;
+	// 	max-width: 300px;
+	// 	width: auto;
+	// 	text-align: center;
+	// 	margin: 5px auto;
+	// 	clear: both;
+	// 	cursor: pointer;
+	// }
+
+	.picture {
+	  width: 200px;
+	}
+
+	.results {
+		text-align: center;
+		font-size: 7em;
+	}
+
+	// .picked {
+	// 	border-color: #222;
+	// 	// font-weight: 700;
+	// 	background-color: rgb(250, 174, 0);
+	// }
 
 }
