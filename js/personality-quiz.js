@@ -13,42 +13,41 @@ var PersonalityQuiz = {
     init : function() {
         // load title
         if (typeof quiz['title'] !== 'undefined' && $.type(quiz['title']) == 'string') {
-            $(document.createElement('h1')).text(quiz['title']).appendTo('#personality-frame');
+            $(document.createElement('p')).addClass('title').text(quiz['title']).appendTo('.quiz-frame');
         } else {
-            $(document.createElement('h1')).text('Quiz').appendTo('#personality-frame');
+            $(document.createElement('p')).addClass('title').text('Quiz').appendTo('.quiz-frame');
         }
 
         // add frame elements
         if (typeof quiz['content'] !== 'undefined' && $.type(quiz['content']) == 'array') {
 
             // pager
-            $(document.createElement('p')).attr('id','pager').addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('#personality-frame');
+            $(document.createElement('p')).addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('.quiz-frame');
 
             // first question
-            $(document.createElement('h2')).attr('id', 'question').addClass('question').text(quiz['content'][0]['question']).appendTo('#personality-frame');
+            $(document.createElement('p')).addClass('question').text(quiz['content'][0]['question']).appendTo('.quiz-frame');
 
             // add image if present
             if (quiz['content'][0].hasOwnProperty('image') && quiz['content'][0]['image'] != '') {
                 $(document.createElement('img'))
-                .attr('id', 'question-image')
                 .addClass('question-image')
                 .attr('src', quiz['content'][0]['image'])
-                .appendTo('#personality-frame');
+                .appendTo('.quiz-frame');
             }
 
             // choices block
             $(document.createElement('ul'))
-                .attr('id', 'choices-block')
-                .appendTo('#personality-frame');
+                .addClass('choices-block')
+                .appendTo('.quiz-frame');
 
             // choices
             PersonalityQuiz.addChoices(quiz['content'][0]['choices']);
 
             // submit button
             $(document.createElement('div'))
-                .attr('id', 'submitbutton')
+                .addClass('submit-button')
                 .text('Submit Answer')
-                .appendTo('#personality-frame');
+                .appendTo('.quiz-frame');
 
             // set up choices buttons and submit button
             PersonalityQuiz.setUpButtons();
@@ -65,19 +64,19 @@ var PersonalityQuiz = {
         })
 
         if (typeof x !== 'undefined' && $.type(x) == 'array') {
-            $('#choices-block').empty();
+            $('.choices-block').empty();
             for (var i=0; i<x.length; i++){
                 // append choices
                 $(document.createElement('li'))
-                    .addClass('choice choice-box')
+                    .addClass('choice')
                     .attr('data-index', i)
                     .text(x[i])
-                    .appendTo('#choices-block');
+                    .appendTo('.choices-block');
                 // append choice photos
                 $(document.createElement('img'))
                     .addClass('picture')
                     .attr('src', y[i])
-                    .appendTo('#choices-block');
+                    .appendTo('.choices-block');
             }
         }
     },
@@ -94,7 +93,7 @@ var PersonalityQuiz = {
             if (submission) {
                 // set submission as false so multiple clicks won't be counted
                 submission = false;
-                $('#submitbutton').click(function(){
+                $('.submit-button').click(function(){
                     $('.choice').off('click');
                     $(this).off('click');
                     PersonalityQuiz.nextQuestion(picked);
@@ -124,9 +123,9 @@ var PersonalityQuiz = {
             // reset x and then set to new choices
             x = [];
 
-            $('#question').text(quiz['content'][currentquestion]['question']);
+            $('.question').text(quiz['content'][currentquestion]['question']);
 
-            $('#pager').text("Question " + Number(currentquestion+1) + " of " + quiz['content'].length);
+            $('.pager').text("Question " + Number(currentquestion+1) + " of " + quiz['content'].length);
 
             // add new choices
             PersonalityQuiz.addChoices(quiz['content'][currentquestion]['choices']);
@@ -135,13 +134,13 @@ var PersonalityQuiz = {
         
             // image stuff
             if (quiz['content'][currentquestion].hasOwnProperty('image') && quiz['content'][currentquestion]['image'] != '') {
-                if ($('#question-image').length == 0) {
+                if ($('.question-image').length == 0) {
                     $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
                 } else {
-                    $('#question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
+                    $('.question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
                 }
             } else {
-                $('#question-image').remove();
+                $('.question-image').remove();
             }
 
         }
@@ -154,12 +153,12 @@ var PersonalityQuiz = {
         // use key to find corresponding result
         var results = quiz['results'][key_of_largest_score];
 
-        $('#question').empty();
-        $('#pager').empty();
-        $('#choices-block').empty();
-        $('#question-image').remove();
-        $('#submitbutton').remove();
-        $('#question').attr('id', 'results')
+        $('.question').empty();
+        $('.pager').empty();
+        $('.choices-block').empty();
+        $('.question-image').remove();
+        $('.submit-button').remove();
+        $('.question').attr('id', 'results')
             .addClass('results')
             .text("You got " + results + "!");
 
