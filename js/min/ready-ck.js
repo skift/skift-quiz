@@ -1,0 +1,1 @@
+$(document).ready(function(){if("trivia"==quiz.type)initialize();else if("personality"==quiz.type){for(score=[],i=0;i<quiz.results.length;i++)score.push(0);PersonalityQuiz.init()}else console.log("Something went wrong here.")});

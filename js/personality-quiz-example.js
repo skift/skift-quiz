@@ -71,3 +71,4 @@ var quiz =
         "City"
     ]
 }
+>>>>>>> 58afc185db18c0cf2d7b29f138648c783101db22

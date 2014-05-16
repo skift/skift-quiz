@@ -1,0 +1,1152 @@
+// ------------------------------------
+// Setup
+// ------------------------------------
+
+#container {
+	@include container($computer);
+}
+
+// ------------------------------------
+// Header
+// ------------------------------------
+
+#header {
+	@include span-columns(4 omega,4);
+	#header-menus {
+		#mobile-nav-container {
+			#logo-mobile {
+				@include span-columns(3,4);
+			}
+			#search-mobile {
+				@include span-columns(1 omega,4);
+			}
+		}
+		#logo {
+			display: none;
+		}
+		#search {
+			display: none;
+		}
+	}
+	#search-form {
+		display: none;
+	}
+	
+	@include at-breakpoint($computer) {
+		@include span-columns(20 omega,24);
+		@include prefix(2,24);
+		@include suffix(2,24);
+		#header-menus {
+			#logo {
+				@include span-columns(3,40);
+				display: block;
+			}
+			#primary-nav {
+				@include span-columns(26,40);
+				display: block;
+			}
+			#product-nav {
+				@include span-columns(9,40);
+				display: block;
+			}
+			#search {
+				@include span-columns(2 omega,40);
+				display: block;
+			}
+		}
+		&.home {
+			#header-menus {
+				#logo {
+					@include span-columns(5,40);
+				}
+				#primary-nav {
+					@include span-columns(24,40);
+				}
+			}
+		}
+	}
+}
+
+// ------------------------------------
+// Banner and signup
+// ------------------------------------
+
+#top-banner {
+	@include span-columns(4 omega,4);
+	#top-leaderboard, #top-signup, #top-superleaderboard {
+		display: none;
+	}
+	#top-mobile-leaderboard {
+		@include span-columns(4 omega,4);
+	}
+	@include at-breakpoint($computer) {
+		@include span-columns(24 omega,24);
+		#top-leaderboard, #top-signup, #top-superleaderboard {
+			display: block;
+		}
+		#top-leaderboard {
+			@include span-columns(18,24);
+		}
+		#top-signup {
+			@include span-columns(5 omega,24);
+			@include post(1,24)
+		}
+		#top-superleaderboard {
+			@include span-columns(12 omega, 12);
+		}
+		#top-mobile-leaderboard {
+			display: none;
+		}
+	}
+	@media (min-width: 720px) and (max-width: 960px) {
+		@include span-columns(24 omega,24);
+		@include suffix(0);
+		#top-leaderboard {
+			@include span-columns(24 omega,24);
+		}
+		#top-mobile-leaderboard {
+			display: none;
+		}
+		#top-signup {
+			display: none;
+		}
+	}
+}
+
+// ------------------------------------
+// Article
+// ------------------------------------
+
+#article {
+	@include span-columns(4 omega,4);
+	#post-header {
+		#post-sponsor {
+			@include span-columns(10 omega,12);
+			@include pad(1,1);
+			.sponsored {
+				@include span-columns(3,8);
+			}
+			#post-sponsor-logo {
+				@include span-columns(5 omega, 8);
+			}
+		}
+		#post-breadcrumbs {
+			display: none;
+		}
+		#post-headline, #post-author, #post-dateline, #post-mobile-meta .featured-image-caption, #post-skift-take, #post-promo, #post-mobile-meta .featured-image-caption, #post-mobile-meta .sharing {
+			@include span-columns(10 omega,12);
+			@include pad(1,1);
+		}
+		#post-author {
+			.author-twitter {
+				display: none;
+			}
+		}
+		#post-mobile-meta {
+			display: block;
+			@include span-columns(12 omega,12);
+		}
+		#post-skift-take {
+			#skift-take-sponsor-callout {
+				@include span-columns(3,8);
+			}
+			#skift-take-sponsor-logo {
+				@include span-columns(5 omega,8);
+			}
+		}
+	}
+	#post-mobile-meta {
+		#post-featured-image {
+			.slideshow .slide-image {
+				.slide-nav {
+					@include container;
+					@include pad(1,0);
+					.slide-total {
+						@include span-columns(5,12);
+					}
+					.slide-arrows {
+						@include span-columns(5 omega,12);
+					}
+				}
+				.slide-meta p {
+					@include pad(1,1,24);
+				}
+			}
+		}
+	}
+	#post-container {
+		@include span-columns(12 omega,12);
+		#post-featured-image {
+			@include span-columns(12 omega,12);
+			.slideshow .slide-image {
+				.slide-nav {
+					@include container;
+					@include pad(1,0);
+					max-width: none;
+					.slide-total {
+						@include span-columns(5,12);
+					}
+					.slide-arrows {
+						@include span-columns(5 omega,12);
+					}
+				}
+				.slide-meta p {
+					@include pad(1,1,24);
+				}
+			}
+		}
+		.notification {
+			display: none;
+		}
+		#post-body {
+			#post-copy {
+				> p, > h1, > h2, > h3, > h4, > h5, > h6, > .nc_footer {
+					@include pad(1,1);
+				}
+				.alignleft, .alignright {
+					display: block;
+					margin: 0 auto;
+				}
+				.read-more {
+					.title {
+						display: block;
+						@include span-columns(2,12);
+					}
+					.copy {
+						display: block;
+						@include span-columns(9 omega,12);
+						@include prefix(1,12);
+						.sponsored .copy {
+							display: inline-block;
+							@include reset-columns;
+							@include pad(0,0);
+						}
+					}
+				}
+				.ad-content {
+					@include span-columns(12 omega,12);
+				}
+			}
+			#post-footer {
+				#post-social-tags {
+					#post-tags {
+						@include span-columns(10 omega,12);
+						@include pad(1,1);
+					}
+					#post-mobile-author {
+						@include span-columns(10 omega,12);
+						@include pad(1,1);
+					}
+				}
+				.newsletter-signup {
+					.copy {
+						@include span-columns(10 omega,12);
+						@include pad(1,1);
+					}
+				}
+				#post-comments {
+					@include span-columns(4 omega,4);
+					.ym {
+						@include span-columns(4 omega,4);
+					}
+				}
+			}
+		}
+
+	}
+	#post-fly-in {
+		@include span-columns(12 omega,12);
+		display: block;
+		.title {
+			display: block;
+			@include span-columns(3,24);
+			@include prefix(1,24);
+		}
+		.container {
+			@include span-columns(20 omega,24);
+			.image {
+				display: none;
+			}
+			.copy {
+				display: block;
+				@include span-columns(21,24);
+				@include prefix(1,24);
+				.email, .submit {
+					display: inline-block;
+					input {
+						width: 100%;
+					}
+				}
+			}
+			.close {
+				display: block;
+				@include span-columns(2 omega,24);
+			}
+		}
+	}
+	&.report {
+		#post-body #post-copy {
+			#post-promo {
+				display: none;
+			}
+			#product-terms {
+				@include span-columns(10 omega,12);
+				@include pad(1,1,12);
+			}
+		}
+	}
+	@include at-breakpoint($computer) {
+		#post-header {
+			@include container;
+			@include span-columns(6,24);
+			@include pad(2,1,24);
+			#post-meta, #post-commentary {
+				display: inline-block;
+				@include span-columns(6 omega,6);
+				@include pad(0,0);
+				.fixed-container > * {
+					@include span-columns(6 omega,6);
+					@include pad(0,0);
+				}
+			}
+			#post-meta {
+				> * {
+					@include span-columns(4 omega,4);
+					@include pad(0,0);
+				}
+			}
+			#post-breadcrumbs {
+				display: block;
+			}
+			#post-author {
+				.author-twitter {
+					display: block;
+				}
+			}
+			#post-commentary {
+				&.fixed {
+					display: block;
+					position: fixed;
+					top: 0;
+					left: 0;
+					@include span-columns(6,24);
+					@include pad(2,1,24);
+					.fixed-container {
+						@include container;
+						> * {
+							@include span-columns(4 omega,4);
+						}
+					}
+				}
+				#post-skift-take {
+					#skift-take-sponsor-callout {
+						@include span-columns(3,8);
+					}
+					#skift-take-sponsor-logo {
+						@include span-columns(5 omega,8);
+					}
+				}
+			}
+		}
+		#post-container {
+			@include span-columns(15 omega,24);
+			.notification {
+				display: block;
+				@include span-columns(27 omega,32);
+				@include suffix(5,32);
+			}
+			#post-featured-image {
+				.slideshow {
+					&.full-width {
+						@include pull(3,12, right);
+					}
+					.slide-image {
+						.slide-nav {
+							@include pad(1,0);
+							.slide-total {
+								@include span-columns(5,12);
+							}
+							.slide-arrows {
+								@include span-columns(5 omega,12);
+							}
+						}
+						.slide-meta p {
+							@include pad(1,1);
+						}
+					}
+				}
+			}
+			#post-featured-image-caption {
+				@include span-columns(12 omega, 15);
+				@include suffix(3,15);
+			}
+			#post-body {
+				@include span-columns(12 omega,15);
+				@include pad(0,0);
+				@include suffix(3,15);
+				#post-social {
+					.sharing {
+						p {
+							@include span-columns(4,12);
+						}
+						ul {
+							@include span-columns(8 omega,12);
+						}
+					}
+				}
+				#post-copy {
+					> p, > h1, > h2, > h3, > h4, > h5, > h6, > .nc_footer {
+						@include pad(0,0);
+					}
+					> p img.alignright {
+						max-width: 75%;
+						height: auto;
+					}
+					> p img.alignleft {
+						max-width: 50%;
+						height: auto;
+					}
+					// Layout classes
+					.alignright {
+						// Subtract suffix from total columns before calculating the pull
+						float: right;
+						clear: right;
+						margin: 0 0 5% 5%;
+						@include pull(3,12, right);
+					}
+					.alignleft {
+						float: left;
+						clear: left;
+						margin: 0 5% 5% 0;
+					}
+					.read-more {
+						@include span-columns(12 omega,12);
+						.title {
+							@include span-columns(6,24);
+						}
+						.copy {
+							@include span-columns(16 omega,24);
+							@include pad(1,1);
+							.sponsored .copy {
+								@include reset-columns;
+								@include pad(0,0);
+							}
+						}
+					}
+					.ad-content {
+						@include reset-columns;
+						float: right;
+						margin: 0 0 5% 5%;
+						@include pull(2,12, right);
+						&.push-ad-below-post {
+							float: none;
+							margin: 0 auto;
+						}
+					}
+				}
+				#post-footer {
+					#post-social-tags {
+						@include span-columns(12 omega,12);
+						.sharing {
+							@include span-columns(5,12);
+							p {
+								@include span-columns(4,12);
+							}
+							ul {
+								@include span-columns(8 omega,12);
+							}
+						}
+						#post-tags {
+							@include pad(0,0);
+							@include bleed(gutter(12), left);
+							@include span-columns(7 omega,12);
+						}
+					}
+					.newsletter-signup {
+						@include span-columns(12 omega,12);
+						.copy {
+							@include pad(1,0);
+							@include span-columns(5,12);
+						}
+						.form {
+							@include span-columns(6 omega,12);
+						}
+					}
+					#post-comments {
+						@include span-columns(12 omega,12);
+						.ym {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+		#post-fly-in {
+			@include span-columns(8 omega, 24);
+			@include push(16,24);
+			.title {
+				@include span-columns(4,48);
+				@include pad(1,1,96);
+			}
+			.container {
+				@include span-columns(43 omega,48);
+				.image {
+					display: block;
+					@include span-columns(8,24);
+				}
+				.copy {
+					display: block;
+					@include span-columns(13,24);
+					@include pad(1,1,48);
+					.email, .submit {
+						display: inline-block;
+						input {
+							width: 100%;
+						}
+					}
+				}
+				.close {
+					display: block;
+					@include span-columns(2 omega,24);
+				}
+				&.no-image {
+					.image {
+						display: none;
+					}
+					.copy {
+						display: block;
+						@include span-columns(21,24);
+						@include prefix(1,24);
+						.email, .submit {
+							display: inline-block;
+							input {
+								width: 100%;
+							}
+						}
+					}
+					.close {
+						display: block;
+						@include span-columns(2 omega,24);
+					}
+				}
+			}
+		}
+		&.page {
+			#post-header {
+				@include span-columns(6,24);
+				@include pad(2,1,24);
+			}
+			#post-container {
+				@include span-columns(15 omega,24);
+				#post-body {
+					@include span-columns(13 omega,15);
+					@include prefix(0);
+					@include suffix(2,15);
+					#post-copy {
+						// Layout classes
+						.alignright {
+							// Subtract suffix from total columns before calculating the pull
+							@include pull(0);
+							float: right;
+							clear: right;
+							margin: 0 0 5% 5%;
+						}
+						.alignleft {
+							float: left;
+							clear: left;
+							margin: 0 5% 5% 0;
+						}
+					}
+				}
+			}
+		}
+		&.report {
+			#post-body #post-copy {
+				#product-terms {
+					@include span-columns(4 omega,4);
+					@include pad(0,0);
+				}
+			}
+			#post-header #product-promo {
+				@include span-columns(10 omega,12);
+				@include pad(1,1,12);
+			}
+		}
+	}
+	@media (min-width: 720px) and (max-width: 960px) {
+		#post-container #post-body {
+			#post-social {
+				display: none;
+			}
+		}
+	}
+}
+
+// ------------------------------------
+// Drip pan
+// ------------------------------------
+
+#drip-pan {
+	@include span-columns(4 omega,4);
+	#drip-pan-hed {
+		@include span-columns(4 omega,4);
+	}
+	.story {
+		@include span-columns(10 omega,12);
+		@include pad(1,1);
+		.title {
+			@include span-columns(4 omega,4);
+		}
+	}
+	@include at-breakpoint($computer) {
+		#drip-pan-hed {
+			@include span-columns(8 omega,24);
+			@include pad(8,8);
+		}
+		#drip-pan-stories {
+			@include span-columns(20 omega,24);
+			@include pad(2,2);
+		}
+		.story {
+			@include span-columns(5,20);
+			@include pad(0,0);
+			&.omega {
+				@include span-columns(5 omega,20);
+			}
+		}
+	}
+}
+
+// ------------------------------------
+// Footer
+// ------------------------------------
+
+#footer {
+	@include span-columns(4 omega,4);
+	#footer-content {
+		@include span-columns(4 omega,4);
+		#footer-title, #footer-social, #footer-info {
+			@include span-columns(10 omega, 12);
+			@include pad(1,1);
+		}
+	}
+	@include at-breakpoint($computer) {
+		#footer-content {
+			@include span-columns(12 omega,12);
+			#footer-title, #footer-social, #footer-info {
+				@include pad(0,0);
+			}
+			#footer-title-social {
+				@include span-columns(10 omega,12);
+				@include pad(1,1,12);
+				#footer-title {
+					@include reset-columns;
+					// @include prefix(2,24);
+				}
+				#footer-social {
+					@include reset-columns;
+					// @include suffix(2,24);
+				}	
+			}
+			#footer-info {
+				@include span-columns(10 omega,12);
+				@include pad(1,1,12);
+			}
+		}
+	}
+}
+
+// ------------------------------------
+// Front page
+// ------------------------------------
+
+#home {
+	#home-river, .featured-category {
+		@include span-columns(12 omega, 12);
+		ul, ul li, ul li a {
+			@include span-columns(12 omega,12);
+		}
+		#home-river-heading h3, #home-river-heading p.date, ul li a > span, ul li .commentary {
+			@include span-columns(10 omega,12);
+			@include pad(1,1);
+		}
+	}
+	#home-river #home-river-heading p.date {
+		display: none;
+	}
+	#home-featured {
+		display: none;
+	}
+	#promo-bar {
+		display: none;
+	}
+	.newsletter-signup {
+		@include span-columns(12 omega,12);
+		.copy {
+			@include span-columns(10 omega,12);
+			@include pad(1,1);
+		}
+	}
+	#home-categories {
+		#category-nav, .featured-category-story {
+			display: none;
+		}
+	}
+	.featured-category {
+		> h3 {
+			@include span-columns(10 omega,12);
+			@include pad(1,1);
+		}
+		.featured-category-list .ad-featured-category {
+			@include span-columns(4 omega,4);
+		}
+	}
+	@include at-breakpoint($computer) {
+		#home-river {
+			@include span-columns(3,12);
+			@include pad(1,0,12);
+			ul {
+				@include span-columns(22 omega,24);
+				@include pad(1,1,24);
+				li {
+					@include span-columns(10 omega,12);
+					@include pad(1,1,12);
+					&.image {
+						img {
+							@include span-columns(2,4);
+						}
+						.headline {
+							@include span-columns(2 omega, 4);
+						}
+					}
+				}
+				li a {
+					> span {
+						@include span-columns(12 omega,12);
+						@include pad(0,0);
+					}
+					.headline {
+						@include reset-columns;
+					}
+				}
+			}
+			#home-river-heading p.date {
+				display: inline;
+			}
+			.ad-river {
+				display: none;
+				width: 0; // required so ad JS doesn't show it
+			}
+		}
+		#home-featured {
+			display: block;
+			@include span-columns(8 omega,12);
+			.notification {
+				@include span-columns(27 omega,32);
+				@include suffix(5,32);
+			}
+			.home-featured-story {
+				@include span-columns(27 omega,32);
+				@include suffix(5,32);
+				.image {
+					@include span-columns(8,12);
+					margin-right: 0;
+				}
+				.commentary {
+					@include span-columns(4 omega,12);
+					width: space(4,12);
+					.skift-take-sponsor-callout {
+						@include span-columns(3,8);
+					}
+					.skift-take-sponsor-logo {
+						@include span-columns(5 omega,8);
+					}
+				}
+				.headline {
+					@include span-columns(8 omega,12);
+					@include suffix(4,12);
+					h2 {
+						@include span-columns(22 omega,24);
+						@include pad(1,1,24);
+					}
+				}
+			}
+			.ad-home-featured {
+				@include span-columns(12 omega,12);
+			}
+		}
+		#promo-bar {
+			@include span-columns(12 omega, 12);
+			display: block;
+			.container {
+				@include span-columns(10 omega,12);
+				@include pad(1,1,12);
+			}
+			.promo-vertical {
+				@include span-columns(3,12);
+				&.omega {
+					@include span-columns(3 omega,12);
+				}
+				.container {
+					@include span-columns(12 omega,12);
+					@include pad(0,0);
+				}
+				ul, ul li {
+					@include span-columns(12 omega,12);
+				}
+				p, .headline, .jump {
+					display: block;
+					@include span-columns(10 omega,12);
+					@include pad(1,1,12);
+				}
+			}
+		}
+		#home-categories {
+			@include span-columns(4 omega,4);
+			#category-nav {
+				@include span-columns(2,12);
+				display: block;
+				&.fixed {
+					position: fixed;
+					top: 0;
+				}
+				ul, ul li {
+					@include span-columns(4 omega,4);
+				}
+			}
+			#featured-categories {
+				@include span-columns(9 omega,12);
+				@include suffix(1,12);
+				@include bleed(gutter(12), left);
+				.featured-category {
+					> h3 {
+						display: none;
+					}
+					.featured-category-story {
+						@include span-columns(11,18);
+						display: block;
+					}
+					.featured-category-list {
+						@include span-columns(7 omega,18);
+					}
+				}
+			}
+		}
+		.newsletter-signup {
+			display: none;
+		}
+	}
+}
+
+// ------------------------------------
+// Archive
+// ------------------------------------
+
+#archive {
+	#archive-header, #archive-sections, #archive-section, #featured-sections, #featured-section, .featured-section-list, .newsletter-signup, #archive-stream, #archive-promo-bar, #archive-sidebar, .ad-archive-sidebar {
+		@include span-columns(4 omega,4);
+	}
+	#section-nav, .featured-section-story, .featured-section-jump, .featured-section-stories .title, .featured-section-list .title, &.subcategory #archive-section, .ad-featured-section {
+		display: none;
+	}
+	.featured-section-list ul li, #archive-stream .stream-story {
+		@include span-columns(4 omega,4);
+		.headline, .dateline, h3 {
+			display: block;
+			@include span-columns(10 omega,12);
+			@include pad(1,1,12);
+		}
+	}
+	.featured-section h3, .archive-promo {
+		@include span-columns(10 omega,12);
+		@include pad(1,1,12);
+	}
+	#archive-stream {
+		.date, .stream-story img, .stream-jump {
+			@include span-columns(10 omega,12);
+			@include pad(1,1,12);
+		}
+	}
+	.newsletter-signup {
+		.copy {
+			@include span-columns(10 omega,12);
+			@include pad(1,1);
+		}
+	}
+	@include at-breakpoint($computer) {
+		#archive-header {
+			@include span-columns(10,12);
+			@include pad(1,1,12);
+		}
+		#section-nav {
+			display: block;
+			@include span-columns(2,12);
+			&.fixed {
+				position: fixed;
+				top: 0;
+			}
+		}
+		#featured-sections {
+			@include span-columns(9 omega,12);
+			@include suffix(1,12);
+			@include bleed(gutter(12), left);
+			.featured-section {
+				@include span-columns(12 omega,12);
+			}
+			.featured-section-stories {
+				@include span-columns(11,18);
+				.featured-section-story {
+					display: block;
+					clear: both;
+					@include span-columns(4,8);
+					&.omega {
+						clear: none;
+						@include span-columns(4 omega,8);
+					}
+				}
+			}
+			.featured-section-list {
+				@include span-columns(7 omega,18);
+			}
+		}
+		&.subcategory #archive-section {
+			display: block;
+			@include span-columns(10 omega,12);
+			@include pad(1,1,12);
+			.featured-section-stories {
+				@include span-columns(8,12);
+				.featured-section-story {
+					display: block;
+					clear: both;
+					@include span-columns(4,8);
+					&.omega {
+						clear: none;
+						@include span-columns(4 omega,8);
+					}
+				}
+			}
+			.featured-section-list {
+				@include span-columns(4 omega,12);
+			}
+		}
+		.featured-section {
+			h3 {
+				display: none;
+			}
+		}
+		.featured-section-stories, .featured-section-list {
+			.title {
+				display: block;
+				@include span-columns(4 omega,4);
+			}
+		}
+		.featured-section-jump {
+			display: block;
+			@include span-columns(12 omega,12);
+		}
+		.newsletter-signup {
+			display: none;
+		}
+		#archive-stories {
+			@include span-columns(10 omega,12);
+			@include pad(1,1,12);
+		}
+		#archive-stream {
+			@include span-columns(8,12);
+			.date, .stream-story, .stream-jump {
+				@include span-columns(4 omega,4);
+				@include pad(0,0);
+			}
+			.stream-story {
+				@include span-columns(4 omega,4);
+				h3 {
+					@include span-columns(12 omega,12);
+					@include pad(0,0);
+				}
+				&.image {
+					img {
+						@include span-columns(4,12);
+						@include pad(0,0);
+					}
+					h3 {
+						@include span-columns(8 omega,12);
+						@include pad(0,0);
+					}
+				}
+			}
+		}
+		#archive-sidebar {
+			@include span-columns(4 omega,12);
+		}
+		#archive-promo-bar {
+			@include span-columns(12 omega,12);
+			.container {
+				@include span-columns(10 omega,12);
+				@include pad(1,1,12);
+			}
+		}
+		.archive-promo {
+			@include span-columns(4,12);
+			@include pad(0,0);
+			&.omega {
+				@include span-columns(4 omega,12);
+			}
+		}
+		.ad-featured-section {
+			display: block;
+			@include span-columns(4 omega,4);
+		}
+		hr {
+			@include span-columns(4 omega,4);
+			@include bleed(columns(1,9) + gutter(9), right);
+			@include bleed(gutter(9), left);
+		}
+	}
+}
+
+// ------------------------------------
+// Product
+// ------------------------------------
+
+#product-header #logo {
+	@include span-columns(7 omega,24);
+	@include post(1,24);
+	@include pre(16,24);
+}
+
+#product {
+	#product-title, #product-offerings, #product-testimonials, #product-archive, #product-single, #product-future {
+		@include span-columns(4 omega,4);
+	}
+	.container {
+		@include span-columns(10 omega,12);
+		@include pad(1,1);
+	}
+
+	#product-title h2 {
+		@include span-columns(14 omega,24);
+		@include pad(2,8,24);
+	}
+
+	#product-offerings {
+		.container {
+			div {
+				@include span-columns(4,10);
+				@include pad(1,0,10);
+				&.omega {
+					@include span-columns(4 omega,10);
+					@include pad(0,1,10);
+				}
+				&.subscribe-future, &.subscription-description, &.subscription, &.subscription-image {
+					@include span-columns(10 omega,10);
+				}
+			}
+			.cta {
+				@include span-columns(10 omega,10);
+			}
+		}
+	}
+
+	#product-testimonials {
+		ul li {
+			display: none;
+			&.primary {
+				display: inline-block;
+			}
+		}
+	}
+
+	#product-archive {
+		.report {
+			.report-cover, .report-description {
+				@include span-columns(10 omega,12);
+				@include pad(1,1,12);
+			}
+		}
+		.report-jump {
+			@include span-columns(4 omega,4);
+		}
+	}
+
+	@include at-breakpoint($computer) {
+
+		#product-header #logo {
+			@include span-columns(3 omega,24);
+			@include post(1,24);
+			@include prefix(20,24);
+		}
+
+		#product-title h2 {
+			@include span-columns(18 omega,24);
+			@include pad(2,5,24);
+		}
+
+		#product-testimonials {
+			ul li {
+				display: inline-block;
+			}
+		}
+
+		#product-archive {
+			.report {
+				@include span-columns(9 omega,9);
+				.report-cover {
+					@include span-columns(6,24);
+					@include pad(0,0);
+				}
+				.report-description {
+					@include span-columns(16 omega,24);
+					@include pad(1,1,24);
+				}
+			}
+		}
+
+		#product-single {
+			.container {
+				@include span-columns(8 omega,12);
+				@include pad(2,2,12);
+			}
+		}
+
+		#product-future {
+			ul li {
+				@include span-columns(6 omega,12);
+				&:nth-child(odd) {
+					@include span-columns(6,12);
+				}
+			}
+		}
+
+	}
+
+}
+
+// ------------------------------------
+// Partner Offer
+// ------------------------------------
+
+#partner-offer {
+	@include span-columns(4 omega,4);
+		#post-body {
+			@include span-columns(10 omega,12);
+			@include pad(1,1);
+		}
+	@include at-breakpoint($computer) {
+		@include span-columns(20 omega,24);
+		@include pad(2,2);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

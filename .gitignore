@@ -1,3 +1,6 @@
 # git-s3 deployment config files
 config.yml
 history.lock
+
+.sass-cache
+*.codekit

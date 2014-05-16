@@ -1,0 +1,126 @@
+// ------------------------------------
+// Typography
+// ------------------------------------
+
+$type-body: "Proxima Nova", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+// Lato as webfont fallback
+$type-display: Adelle, "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+// Aleo-Light as webfont fallback
+
+// ------------------------------------
+// Webfonts
+// ------------------------------------
+
+// Proxima Nova
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('../webfont/ProximaNova-Regular.eot');
+	src: url('../webfont/ProximaNova-Regular.eot#iefix') format('embedded-opentype'),
+		 url('../webfont/ProximaNova-Regular.woff') format('woff'),
+		 url('../webfont/ProximaNova-Regular.ttf') format('truetype'),
+		 url('../webfont/ProximaNova-Regular.svg#wf') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('../webfont/ProximaNova-Bold.eot');
+	src: url('../webfont/ProximaNova-Bold.eot#iefix') format('embedded-opentype'),
+		 url('../webfont/ProximaNova-Bold.woff') format('woff'),
+		 url('../webfont/ProximaNova-Bold.ttf') format('truetype'),
+		 url('../webfont/ProximaNova-Bold.svg#wf') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('../webfont/ProximaNova-Thin.eot');
+	src: url('../webfont/ProximaNova-Thin.eot#iefix') format('embedded-opentype'),
+		 url('../webfont/ProximaNova-Thin.woff') format('woff'),
+		 url('../webfont/ProximaNova-Thin.ttf') format('truetype'),
+		 url('../webfont/ProximaNova-Thin.svg#wf') format('svg');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('../webfont/ProximaNova-Light.eot');
+	src: url('../webfont/ProximaNova-Light.eot#iefix') format('embedded-opentype'),
+		 url('../webfont/ProximaNova-Light.woff') format('woff'),
+		 url('../webfont/ProximaNova-Light.ttf') format('truetype'),
+		 url('../webfont/ProximaNova-Light.svg#wf') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('../webfont/ProximaNova-Semibold.eot');
+	src: url('../webfont/ProximaNova-Semibold.eot#iefix') format('embedded-opentype'),
+		 url('../webfont/ProximaNova-Semibold.woff') format('woff'),
+		 url('../webfont/ProximaNova-Semibold.ttf') format('truetype'),
+		 url('../webfont/ProximaNova-Semibold.svg#wf') format('svg');
+	font-weight: 600;
+	font-style: normal;
+}
+
+// Adelle
+
+@font-face {
+	font-family: 'Adelle';
+	src: url('../webfont/Adelle-Regular.eot');
+	src: url('../webfont/Adelle-Regular.eot#iefix') format('embedded-opentype'),
+		 url('../webfont/Adelle-Regular.woff') format('woff'),
+		 url('../webfont/Adelle-Regular.ttf') format('truetype'),
+		 url('../webfont/Adelle-Regular.svg#wf') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+// @font-face {
+// 	font-family: 'Adelle';
+// 	src: url('../webfont/Adelle-BoldItalic.eot');
+// 	src: url('../webfont/Adelle-BoldItalic.eot#iefix') format('embedded-opentype'),
+// 		 url('../webfont/Adelle-BoldItalic.woff') format('woff'),
+// 		 url('../webfont/Adelle-BoldItalic.ttf') format('truetype'),
+// 		 url('../webfont/Adelle-BoldItalic.svg#wf') format('svg');
+// 	font-weight: bold;
+// 	font-style: italic;
+// }
+
+@font-face {
+	font-family: 'Adelle';
+	src: url('../webfont/Adelle-Thin.eot');
+	src: url('../webfont/Adelle-Thin.eot#iefix') format('embedded-opentype'),
+		 url('../webfont/Adelle-Thin.woff') format('woff'),
+		 url('../webfont/Adelle-Thin.ttf') format('truetype'),
+		 url('../webfont/Adelle-Thin.svg#wf') format('svg');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Adelle';
+	src: url('../webfont/Adelle-LightItalic.eot');
+	src: url('../webfont/Adelle-LightItalic.eot#iefix') format('embedded-opentype'),
+		 url('../webfont/Adelle-LightItalic.woff') format('woff'),
+		 url('../webfont/Adelle-LightItalic.ttf') format('truetype'),
+		 url('../webfont/Adelle-LightItalic.svg#wf') format('svg');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Adelle';
+	src: url('../webfont/Adelle-SemiboldItalic.eot');
+	src: url('../webfont/Adelle-SemiboldItalic.eot#iefix') format('embedded-opentype'),
+		 url('../webfont/Adelle-SemiboldItalic.woff') format('woff'),
+		 url('../webfont/Adelle-SemiboldItalic.ttf') format('truetype'),
+		 url('../webfont/Adelle-SemiboldItalic.svg#wf') format('svg');
+	font-weight: 600;
+	font-style: italic;
+}
