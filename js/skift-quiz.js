@@ -213,8 +213,8 @@ var PersonalityQuiz = {
 
             // submit button
             $(document.createElement('div'))
-                .addClass('submit-button')
-                .text('Submit Answer')
+                .addClass('submit')
+                .append('<a href="#" class="submit-button">Submit Answer</a>')
                 .appendTo('.quiz-frame');
 
             // set up choices buttons and submit button
