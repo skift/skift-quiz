@@ -680,26 +680,67 @@ textarea {
   font-weight: 600;
   font-style: italic; }
 body {
-  padding: 20px 20px 0 20px;
-  font-size: 16px; }
+  padding: 0 20px;
+  font-size: 16px;
+  line-height: 1.5em;
+  font-family: "Proxima Nova", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; }
 
-.skift-quiz ul {
-  list-style: none;
-  padding-left: 0; }
-.skift-quiz .title {
-  font-family: Adelle, "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-  border-bottom: 1px solid #999999;
-  font-size: 2em; }
-.skift-quiz .pager {
-  font-size: .825em;
-  color: #999999;
-  float: right; }
-.skift-quiz .question {
-  font-size: 1.5em; }
-
-img {
-  max-width: 300px;
-  max-height: 200px; }
+.skift-quiz {
+  max-width: 500px; }
+  .skift-quiz ul {
+    list-style: none;
+    padding-left: 0; }
+  .skift-quiz .title {
+    font-family: Adelle, "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+    border-bottom: 1px solid #999999;
+    font-size: 2em;
+    line-height: 1.25em;
+    padding: .5em 0;
+    margin: 0; }
+  .skift-quiz .pager {
+    font-size: .825em;
+    color: #999999;
+    float: right; }
+  .skift-quiz .question {
+    font-size: 1.5em; }
+  .skift-quiz .question-image {
+    width: 100%;
+    height: auto; }
+  .skift-quiz .choices-block a.choice {
+    margin: 1em 0;
+    display: block;
+    text-decoration: none;
+    color: black;
+    clear: both; }
+    .skift-quiz .choices-block a.choice img {
+      display: none; }
+    .skift-quiz .choices-block a.choice span.box {
+      font-family: sans-serif;
+      display: inline-block;
+      font-size: 1.5em;
+      line-height: 1em;
+      margin-right: .25em; }
+      .skift-quiz .choices-block a.choice span.box.checked {
+        color: #3691ce; }
+      .skift-quiz .choices-block a.choice span.box.correct {
+        color: #48ce36; }
+      .skift-quiz .choices-block a.choice span.box.incorrect {
+        color: #ce3636; }
+  .skift-quiz .submit .submit-button {
+    display: inline-block;
+    padding: .5em 1em;
+    border-top: 1px solid #5fb5ee;
+    border-bottom: 1px solid #2b74a5;
+    background: #3691ce;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 100;
+    margin: .5em 0; }
+    .skift-quiz .submit .submit-button:hover {
+      background: #2b74a5;
+      border-bottom: 1px solid #5fb5ee;
+      border-top: 1px solid #2b74a5; }
 
 #personality-quiz li {
   display: inline-block;

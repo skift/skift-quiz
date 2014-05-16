@@ -3,11 +3,19 @@
 // Static only, do not migrate to final:
 
 body {
-	padding: 20px 20px 0 20px;
+	padding: 0 20px;
 	font-size: 16px;
+	line-height: 1.5em;
+	font-family: $type-body;
 }
 
+// Skift Quiz styling
+
+$green: #48ce36;
+$red: #ce3636;
+
 .skift-quiz {
+	max-width: 500px;
 	ul {
 		list-style: none;
 		padding-left: 0;
@@ -16,6 +24,9 @@ body {
 		font-family: $type-display;
 		border-bottom: 1px solid $gray9;
 		font-size: 2em;
+		line-height: 1.25em;
+		padding: .5em 0;
+		margin: 0;
 	}
 	.pager {
 		font-size: .825em;
@@ -26,14 +37,43 @@ body {
 		font-size: 1.5em;
 	}
 	.question-image {
-
+		width: 100%;
+		height: auto;
 	}
-
-}
-
-img {
-	max-width: 300px;
-	max-height: 200px;
+	.choices-block {
+		a.choice {
+			margin: 1em 0;
+			display: block;
+			text-decoration: none;
+			color: $black;
+			clear: both;
+			img {
+				// use susy styling to place this; hiding for now
+				display: none;
+			}
+			span.box {
+				font-family: sans-serif;
+				display: inline-block;
+				font-size: 1.5em;
+				line-height: 1em;
+				margin-right: .25em;
+				&.checked {
+					color: $blue;
+				}
+				&.correct {
+					color: $green;
+				}
+				&.incorrect {
+					color: $red;
+				}
+			}
+		}
+	}
+	.submit {
+		.submit-button {
+			@include cta;	
+		}
+	}
 }
 
 // body {
