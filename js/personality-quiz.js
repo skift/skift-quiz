@@ -29,17 +29,26 @@ var PersonalityQuiz = {
 
             // add image if present
             if (quiz['content'][0].hasOwnProperty('image') && quiz['content'][0]['image'] != '') {
-                $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][0]['image']).appendTo('#personality-frame');
+                $(document.createElement('img'))
+                .attr('id', 'question-image')
+                .addClass('question-image')
+                .attr('src', quiz['content'][0]['image'])
+                .appendTo('#personality-frame');
             }
 
             // choices block
-            $(document.createElement('ul')).attr('id', 'choices-block').appendTo('#personality-frame');
+            $(document.createElement('ul'))
+                .attr('id', 'choices-block')
+                .appendTo('#personality-frame');
 
             // choices
             PersonalityQuiz.addChoices(quiz['content'][0]['choices']);
 
             // submit button
-            $(document.createElement('div')).attr('id', 'submitbutton').text('Submit Answer').appendTo('#personality-frame');
+            $(document.createElement('div'))
+                .attr('id', 'submitbutton')
+                .text('Submit Answer')
+                .appendTo('#personality-frame');
 
             // set up choices buttons and submit button
             PersonalityQuiz.setUpButtons();
@@ -66,18 +75,14 @@ var PersonalityQuiz = {
                     .appendTo('#choices-block');
                 // append choice photos
                 $(document.createElement('img'))
-                    .attr('src', y[i])
                     .addClass('picture')
+                    .attr('src', y[i])
                     .appendTo('#choices-block');
             }
         }
     },
 
     setUpButtons : function() {
-
-        // add highlight to choices on mouseover and remove on mouseout
-        $('.choice').mouseover(function(){ $(this).css({'background-color' : 'rgb(202, 202, 202)'}); })
-        $('.choice').mouseout(function(){ $(this).css({'background-color' : '#FFE099;'}); })
 
         $('.choice').click(function(){
 
@@ -154,7 +159,9 @@ var PersonalityQuiz = {
         $('#choices-block').empty();
         $('#question-image').remove();
         $('#submitbutton').remove();
-        $('#question').attr('id', 'results').css({'text-align':'center', 'font-size':'7em'}).text("You got " + results + "!");
+        $('#question').attr('id', 'results')
+            .addClass('results')
+            .text("You got " + results + "!");
 
         $('#results').hide().fadeIn(1000);
     }

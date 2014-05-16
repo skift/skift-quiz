@@ -697,7 +697,7 @@ h2 {
   font-size: 1.5em;
   font-family: "Proxima Nova", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; }
 
-img.question-image {
+img .question-image {
   display: block;
   margin: 10px auto;
   max-width: 250px;
@@ -781,3 +781,8 @@ img.question-image {
   margin: 5px auto;
   clear: both;
   cursor: pointer; }
+#personality-quiz .picture {
+  width: 200px; }
+#personality-quiz .results {
+  text-align: center;
+  font-size: 7em; }
