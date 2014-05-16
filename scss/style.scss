@@ -29,6 +29,8 @@ $red: #ce3636;
 		margin: 0;
 	}
 	.pager {
+		// font-size: .825em;
+		margin: 0;
 		font-size: .825em;
 		color: $gray9;
 		float: right;
@@ -57,15 +59,9 @@ $red: #ce3636;
 				font-size: 1.5em;
 				line-height: 1em;
 				margin-right: .25em;
-				&.checked {
-					color: $blue;
-				}
-				&.correct {
-					color: $green;
-				}
-				&.incorrect {
-					color: $red;
-				}
+			}
+			&.selected span.box {
+				color: $blue;
 			}
 		}
 	}

@@ -698,6 +698,7 @@ body {
     padding: .5em 0;
     margin: 0; }
   .skift-quiz .pager {
+    margin: 0;
     font-size: .825em;
     color: #999999;
     float: right; }
@@ -720,12 +721,8 @@ body {
       font-size: 1.5em;
       line-height: 1em;
       margin-right: .25em; }
-      .skift-quiz .choices-block a.choice span.box.checked {
-        color: #3691ce; }
-      .skift-quiz .choices-block a.choice span.box.correct {
-        color: #48ce36; }
-      .skift-quiz .choices-block a.choice span.box.incorrect {
-        color: #ce3636; }
+    .skift-quiz .choices-block a.choice.selected span.box {
+      color: #3691ce; }
   .skift-quiz .submit .submit-button {
     display: inline-block;
     padding: .5em 1em;
