@@ -21,7 +21,10 @@ function addChoices(choices) {
     if (typeof choices !== 'undefined' && $.type(choices) == 'array') {
         $('.choices-block').empty();
         for (var i=0; i<choices.length; i++){
-            $(document.createElement('li')).addClass('choice choice-box').attr('data-index', i).text(choices[i]).appendTo('.choices-block');
+            $(document.createElement('li'))
+                .attr('data-index', i)
+                .append('<a href="#" class="choice"><span class="box">&#9745;</span>'+ choices[i] +'</a>')
+                .appendTo('.choices-block');
         }
     }
 }
@@ -151,7 +154,8 @@ function setUpButtons(){
     $('.choice').mouseout(function(){ $(this).css({'background-color' : '#FFE099;'}); })
 
     // event listeners
-    $('.choice').click(function(){
+    $('.choice').click(function(e){
+        e.preventDefault();
 
         // grab data-index and change color of choice when picked
         var picked = $(this).attr('data-index');
@@ -161,7 +165,8 @@ function setUpButtons(){
         // submit button click triggers nextQuestion and passes choice's data-index (via var picked)
         if (submission) {
             submission = false;
-            $('#submitbutton').click(function(){
+            $('#submitbutton').click(function(e){
+                e.preventDefault();
                 $('.choice').off('click');
                 $(this).off('click');
                 nextQuestion(picked);
@@ -238,13 +243,13 @@ var PersonalityQuiz = {
                 $(document.createElement('li'))
                     .addClass('choice')
                     .attr('data-index', i)
-                    .text(x[i])
+                    .append('<a href="#" class="choice"><span class="box">&#9745;</span>'+ x[i] +'<img src='+ y[i] +' alt="" class="picture"/></a>')
                     .appendTo('.choices-block');
                 // append choice photos
-                $(document.createElement('img'))
-                    .addClass('picture')
-                    .attr('src', y[i])
-                    .appendTo('.choices-block');
+                // $(document.createElement('img'))
+                //     .addClass('picture')
+                //     .attr('src', y[i])
+                //     .appendTo('.choices-block');
             }
         }
     },
