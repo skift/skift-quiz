@@ -1,3 +1,4 @@
+@import "susyone";
 @import "partials/base";
 
 // Static only, do not migrate to final:
@@ -59,7 +60,8 @@ $red: #ce3636;
 			clear: both;
 			img {
 				// use susy styling to place this; hiding for now
-				display: none;
+				@include container;
+				@include span-columns(8,9);
 			}
 			span.box {
 				font-family: sans-serif;
@@ -137,8 +139,6 @@ $red: #ce3636;
 		font-weight: 700;
 	}
 
-
-
 	#choice-block {
 		display: block;
 		margin: 0;
@@ -201,21 +201,17 @@ $red: #ce3636;
 	// 	cursor: pointer;
 	// }
 
-	.picture {
-	  width: 200px;
-	}
-
 	.results {
 		text-align: center;
 		font-size: 7em;
 	}
 
-	// .picked {
-	// 	border-color: #222;
-	// 	// font-weight: 700;
-	// 	background-color: rgb(250, 174, 0);
-	// }
 
 }
 
+	.chosen {
+		// border-color: #222;
+		font-weight: 700;
+		background-color: rgb(250, 174, 0);
+	}
 
