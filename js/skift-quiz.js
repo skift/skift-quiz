@@ -1,7 +1,4 @@
-////////////////////////////////////////////////////////////
-///////////// GLOBAL VARIABLES /////////////////////////////
-////////////////////////////////////////////////////////////
-
+// Global variables
 var quiz = {},
     currentquestion = 0,
     score = 0,                  // score for trivia quiz
@@ -10,18 +7,13 @@ var quiz = {},
     personality_score = [],     // score for personality quiz
     submission = true, picked;
 
-
-/////////////////////////////////////////////////////////////
-/////////////// TRIVIA QUIZ /////////////////////////////////
-/////////////////////////////////////////////////////////////
-
-
+// Trivia quiz
 // append choices to choices-block
 function addChoices(choices) {
-    if (typeof choices !== 'undefined' && $.type(choices) == 'array') {
-        $('.choices-block').empty();
+    if (typeof choices !== 'undefined' && jQuery.type(choices) == 'array') {
+        jQuery('.choices-block').empty();
         for (var i=0; i<choices.length; i++){
-            $(document.createElement('li'))
+            jQuery(document.createElement('li'))
                 .attr('data-index', i)
                 .append('<a href="#" class="choice"><span class="box">&#9745;</span>'+ choices[i] +'</a>')
                 .appendTo('.choices-block');
@@ -29,64 +21,64 @@ function addChoices(choices) {
     }
 }
 
-function endQuiz(){
-    $('.question').empty();
-    $('.pager').empty();
-    $('.choices-block').empty();
-    $('.question-image').remove();
-    $('#submitbutton').remove();
-    $('.question').text("You got " + score + " out of " + quiz['content'].length + " correct.");
-    $(document.createElement('h2')).addClass('score').css({'text-align':'center', 'font-size':'7em'}).text(Math.round(score/quiz['content'].length * 100) + '%').insertAfter('.question');
+function endQuiz() {
+    jQuery('.question').empty();
+    jQuery('.pager').empty();
+    jQuery('.choices-block').empty();
+    jQuery('.question-image').remove();
+    jQuery('#submitbutton').remove();
+    jQuery('.question').text("You got " + score + " out of " + quiz['content'].length + " correct.");
+    jQuery(document.createElement('h2')).addClass('score').css({'text-align':'center', 'font-size':'7em'}).text(Math.round(score/quiz['content'].length * 100) + '%').insertAfter('.question');
 
-    $('.score').hide().fadeIn(1000);
+    jQuery('.score').hide().fadeIn(1000);
 }
 
 // helper function to create elements on the DOM
 function htmlEncode(value){
-    return $(document.createElement('div')).text(value).html();
+    return jQuery(document.createElement('div')).text(value).html();
 }
 
-function initialize() {
+function triviaQuizInit() {
     // add title to page
-    if (typeof quiz['title'] !== 'undefined' && $.type(quiz['title']) == 'string') {
-        $(document.createElement('h1')).text(quiz['title']).appendTo('.quiz-frame');
+    if (typeof quiz['title'] !== 'undefined' && jQuery.type(quiz['title']) == 'string') {
+        jQuery(document.createElement('h1')).text(quiz['title']).appendTo('.quiz-frame');
     } else {
-        $(document.createElement('h1')).text('Quiz').appendTo('.quiz-frame');
+        jQuery(document.createElement('h1')).text('Quiz').appendTo('.quiz-frame');
     }
 
-    if (typeof quiz !== 'undefined' && $.type(quiz) == 'object') {
+    if (typeof quiz !== 'undefined' && jQuery.type(quiz) == 'object') {
 
         // add pager
-        $(document.createElement('p')).addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('.quiz-frame');
+        jQuery(document.createElement('p')).addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('.quiz-frame');
 
         // add first question
-        $(document.createElement('p')).addClass('question').text(quiz['content'][0]['question']).appendTo('.quiz-frame');
+        jQuery(document.createElement('p')).addClass('question').text(quiz['content'][0]['question']).appendTo('.quiz-frame');
 
         // add image if present
         if (quiz['content'][0].hasOwnProperty('image') && quiz['content'][0]['image'] != '') {
-            $(document.createElement('img')).addClass('question-image').attr('src', quiz['content'][0]['image']).appendTo('.quiz-frame').fadeIn();
+            jQuery(document.createElement('img')).addClass('question-image').attr('src', quiz['content'][0]['image']).appendTo('.quiz-frame').fadeIn();
         }
 
         // add choices-block
-        $(document.createElement('ul')).addClass('choices-block').appendTo('.quiz-frame');
+        jQuery(document.createElement('ul')).addClass('choices-block').appendTo('.quiz-frame');
         addChoices(quiz['content'][0]['choices'])
 
         // add submit button
-        $(document.createElement('div'))
+        jQuery(document.createElement('div'))
             .addClass('submit')
             .text('Submit Answer')
             // .css({'font-weight':700,'color':'white','padding':'30px 0','text-align':'center'})
             .appendTo('.quiz-frame');
 
         // add submit-button anchor link
-        $(document.createElement('a')).addClass('submit-button').attr('href', '#').appendTo('.submit');
+        jQuery(document.createElement('a')).addClass('submit-button').attr('href', '#').appendTo('.submit');
 
         // set up choices buttons and submit button
         setUpButtons();
 
         // fade in frame and explanation; explanation is behind frame so isn't visible until question #2.
-        $('.quiz-frame').hide().fadeIn(1000);
-        $('.explanation').hide().fadeIn(1000);
+        jQuery('.quiz-frame').hide().fadeIn(1000);
+        jQuery('.explanation').hide().fadeIn(1000);
     }
 }
 
@@ -94,7 +86,7 @@ function initialize() {
 //     1. show whether user's last answer was correct and show explanation, and
 //     2. pose next question
 function nextQuestion(picked) {
-    $('.explanation').empty();
+    jQuery('.explanation').empty();
 
     // iterate to next question and set up var lastquestion so we can access last question results
     currentquestion++;
@@ -102,20 +94,20 @@ function nextQuestion(picked) {
 
     // show answer and explanation to last question
     if (lastquestion >= 0) {
-        $('.explanation').append('<br/><br/><h3 style="font-variant: small-caps; text-decoration: underline;">Your Last Answer<h3><br/>').append(quiz['content'][lastquestion]['question']+'<br/><br/>');
+        jQuery('.explanation').append('<h3 style="font-variant: small-caps; text-decoration: underline;">Your Last Answer<h3>').append(quiz['content'][lastquestion]['question']);
 
         if ( quiz['content'][lastquestion]['choices'][picked] == quiz['content'][lastquestion]['correct'] ) {
-            $('.explanation').append('<p style="color: green;"><strong>Correct!</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
+            jQuery('.explanation').append('<p style="color: green;"><strong>Correct!</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
             score++;
         } else {
-            $('.explanation').append('<p style="color: red"><strong>Incorrect.</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
+            jQuery('.explanation').append('<p style="color: red"><strong>Incorrect.</strong></p>' + ' ' + quiz['content'][lastquestion]['explanation']);
         }
 
         // first 'Your Last Answer' slides out; the rest fade in
         if (lastquestion == 0) {
-            $('.quiz-frame').animate({left : "400px"}, 1000);
+            jQuery('.quiz-frame').animate({left : "400px"}, 1000);
         } else {
-            $('.explanation').hide().fadeIn(1000);
+            jQuery('.explanation').hide().fadeIn(1000);
         }
     }
 
@@ -126,17 +118,17 @@ function nextQuestion(picked) {
     if (quiz['content'][currentquestion] == undefined) {
         endQuiz();
     } else {
-        $('.question').text(quiz['content'][currentquestion]['question']);
-        $('.pager').text("Question " + Number(currentquestion+1) + " of " + quiz['content'].length);
+        jQuery('.question').text(quiz['content'][currentquestion]['question']);
+        jQuery('.pager').text("Question " + Number(currentquestion+1) + " of " + quiz['content'].length);
         
         if (quiz['content'][currentquestion].hasOwnProperty('image') && quiz['content'][currentquestion]['image'] != '') {
-            if ($('.question-image').length == 0) {
-                $(document.createElement('img')).addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
+            if (jQuery('.question-image').length == 0) {
+                jQuery(document.createElement('img')).addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
             } else {
-                $('.question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
+                jQuery('.question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
             }
         } else {
-            $('.question-image').remove();
+            jQuery('.question-image').remove();
         }
 
     addChoices(quiz['content'][currentquestion]['choices']);
@@ -147,28 +139,28 @@ function nextQuestion(picked) {
 }
 
 // set up event listeners and highlighting on buttons
-function setUpButtons(){
+function setUpButtons() {
 
     // add highlight to choices on mouseover and remove on mouseout
-    $('.choice').mouseover(function(){ $(this).css({'background-color' : 'rgb(202, 202, 202)'}); })
-    $('.choice').mouseout(function(){ $(this).css({'background-color' : '#FFE099;'}); })
+    jQuery('.choice').mouseover(function(){ jQuery(this).css({'background-color' : 'rgb(202, 202, 202)'}); })
+    jQuery('.choice').mouseout(function(){ jQuery(this).css({'background-color' : '#FFE099;'}); })
 
     // event listeners
-    $('.choice').click(function(e){
+    jQuery('.choice').click(function(e){
         e.preventDefault();
 
         // grab data-index and change color of choice when picked
-        var picked = $(this).attr('data-index');
-        $('.choice').removeAttr('style').off('mouseover mouseout');
-        $(this).css({'border-color':'#222','font-weight':700,'background-color':'rgb(250, 174, 0)'});
+        var picked = jQuery(this).attr('data-index');
+        jQuery('.choice').removeAttr('style').off('mouseover mouseout');
+        jQuery(this).css({'border-color':'#222','font-weight':700,'background-color':'rgb(250, 174, 0)'});
 
         // submit button click triggers nextQuestion and passes choice's data-index (via var picked)
         if (submission) {
             submission = false;
-            $('#submitbutton').click(function(e){
+            jQuery('#submitbutton').click(function(e){
                 e.preventDefault();
-                $('.choice').off('click');
-                $(this).off('click');
+                jQuery('.choice').off('click');
+                jQuery(this).off('click');
                 nextQuestion(picked);
             })
         };
@@ -176,37 +168,36 @@ function setUpButtons(){
 }
 
 
-///////////////////////////////////////////////////////////////
-//////////////// PERSONALITY QUIZ /////////////////////////////
-///////////////////////////////////////////////////////////////
 
-function init() {
+// Personality quiz
+
+function personalityQuizInit() {
     // load title
-    if (typeof quiz['title'] !== 'undefined' && $.type(quiz['title']) == 'string') {
-        $(document.createElement('p')).addClass('title').text(quiz['title']).appendTo('.quiz-frame');
+    if (typeof quiz['title'] !== 'undefined' && jQuery.type(quiz['title']) == 'string') {
+        jQuery(document.createElement('p')).addClass('title').text(quiz['title']).appendTo('.quiz-frame');
     } else {
-        $(document.createElement('p')).addClass('title').text('Quiz').appendTo('.quiz-frame');
+        jQuery(document.createElement('p')).addClass('title').text('Quiz').appendTo('.quiz-frame');
     }
 
     // add frame elements
-    if (typeof quiz['content'] !== 'undefined' && $.type(quiz['content']) == 'array') {
+    if (typeof quiz['content'] !== 'undefined' && jQuery.type(quiz['content']) == 'array') {
 
         // pager
-        $(document.createElement('p')).addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('.quiz-frame');
+        jQuery(document.createElement('p')).addClass('pager').text('Question 1 of '+quiz['content'].length).appendTo('.quiz-frame');
 
         // first question
-        $(document.createElement('p')).addClass('question').text(quiz['content'][0]['question']).appendTo('.quiz-frame');
+        jQuery(document.createElement('p')).addClass('question').text(quiz['content'][0]['question']).appendTo('.quiz-frame');
 
         // add image if present
         if (quiz['content'][0].hasOwnProperty('image') && quiz['content'][0]['image'] != '') {
-            $(document.createElement('img'))
+            jQuery(document.createElement('img'))
             .addClass('question-image')
             .attr('src', quiz['content'][0]['image'])
             .appendTo('.quiz-frame');
         }
 
         // choices block
-        $(document.createElement('ul'))
+        jQuery(document.createElement('ul'))
             .addClass('choices-block')
             .appendTo('.quiz-frame');
 
@@ -214,7 +205,7 @@ function init() {
         personalityAddChoices(quiz['content'][0]['choices']);
 
         // submit button
-        $(document.createElement('div'))
+        jQuery(document.createElement('div'))
             .addClass('submit')
             .append('<a href="#" class="submit-button">Submit Answer</a>')
             .appendTo('.quiz-frame');
@@ -228,19 +219,19 @@ function init() {
 
 function personalityAddChoices(choices) {
     // get keys from each choice and push into array x (so choices keys can be appended to the page)
-    $.each(choices, function(k, v){
+    jQuery.each(choices, function(k, v){
         x.push(k);
         y.push(v);
     })
 
-    if (typeof x !== 'undefined' && $.type(x) == 'array') {
-        $('.choices-block').empty();
+    if (typeof x !== 'undefined' && jQuery.type(x) == 'array') {
+        jQuery('.choices-block').empty();
         for (var i=0; i<x.length; i++){
             // append choices with array x and photos with array y
-            $(document.createElement('li'))
+            jQuery(document.createElement('li'))
                 .addClass('choice')
                 .attr('data-index', i)
-                .append('<a href="#" class="choice"><span class="box">&#9745;</span>'+ x[i] +'<img src='+ y[i] +' alt="" class="picture"/></a><br/>')
+                .append('<a href="#" class="choice"><span class="box">&#9744;</span>'+ x[i] +'<img src='+ y[i] +' alt="" class="picture"/></a>')
                 .appendTo('.choices-block');
         }
     }
@@ -248,32 +239,28 @@ function personalityAddChoices(choices) {
 
 function personalitySetUpButtons() {
 
-    $('.choice').click(function(e){
+    jQuery('.choice').click(function(e) {
         e.preventDefault();
 
         var self = this;
         // set global variable picked to data-index and change styling of picked choice
-        picked = $(self).attr('data-index');
-        // $('.choice').removeAttr('style').off('mouseover mouseout');
+        picked = jQuery(self).attr('data-index');
+        // jQuery('.choice').removeAttr('style').off('mouseover mouseout');
 
         // add class 'chosen' to picked element to add styling
-        if ($('.chosen')[0] == undefined) {
-            $(self).addClass('chosen');
-            last_choice = $(self);
-        } else if ($('.chosen')[0] !== undefined) {
-            last_choice.removeClass('chosen');
-            last_choice = $(self);
-            $(self).addClass('chosen');
-        } else {
-            console.log('something went wrong');
-        }
+        jQuery('.choice').removeClass('chosen');
+        jQuery('.choice .box').html('&#9744;');
+        jQuery(self).addClass('chosen');
+        jQuery(self).find('.box').html('&#9745;');
 
+        // Don't set submission here; grab the state of the page when the button is clicked
         if (submission) {
             // set submission as false so multiple clicks won't be counted
             submission = false;
-            $('.submit-button').click(function(){
-                $('.choice').off('click');
-                $(this).off('click');
+            jQuery('.submit-button').click(function(e) {
+                e.preventDefault();
+                jQuery('.choice').off('click');
+                jQuery(this).off('click');
                 personalityNextQuestion(picked);
             })
         };
@@ -301,9 +288,9 @@ function personalityNextQuestion(picked) {
         // reset x and then set to new choices
         x = [];
 
-        $('.question').text(quiz['content'][currentquestion]['question']);
+        jQuery('.question').text(quiz['content'][currentquestion]['question']);
 
-        $('.pager').text("Question " + Number(currentquestion+1) + " of " + quiz['content'].length);
+        jQuery('.pager').text("Question " + Number(currentquestion+1) + " of " + quiz['content'].length);
 
         // add new choices
         personalityAddChoices(quiz['content'][currentquestion]['choices']);
@@ -312,13 +299,13 @@ function personalityNextQuestion(picked) {
     
         // image stuff
         if (quiz['content'][currentquestion].hasOwnProperty('image') && quiz['content'][currentquestion]['image'] != '') {
-            if ($('.question-image').length == 0) {
-                $(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
+            if (jQuery('.question-image').length == 0) {
+                jQuery(document.createElement('img')).attr('id', 'question-image').addClass('question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
             } else {
-                $('.question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
+                jQuery('.question-image').attr('src', quiz['content'][currentquestion]['image']).attr('alt', htmlEncode(quiz['content'][currentquestion]['question']));
             }
         } else {
-            $('.question-image').remove();
+            jQuery('.question-image').remove();
         }
 
     }
@@ -331,41 +318,29 @@ function personalityEndQuiz() {
     // use key to find corresponding result
     var results = quiz['results'][key_of_largest_score];
 
-    $('.question').empty();
-    $('.pager').empty();
-    $('.choices-block').empty();
-    $('.question-image').remove();
-    $('.submit-button').remove();
-    $('.question').attr('id', 'results')
+    jQuery('.question').empty();
+    jQuery('.pager').empty();
+    jQuery('.choices-block').empty();
+    jQuery('.question-image').remove();
+    jQuery('.submit-button').remove();
+    jQuery('.question').attr('id', 'results')
         .addClass('results')
         .text("You got " + results + "!");
 
-    $('#results').hide().fadeIn(1000);
+    jQuery('#results').hide().fadeIn(1000);
 };
 
-
-/////////////////////////////////////////////////////////////////////
-///////////// DOCUMENT READY FUNCTION ///////////////////////////////
-/////////////////////////////////////////////////////////////////////
-
-
-$(document).ready(function() {
-
+// Initialize
+jQuery(document).ready(function() {
     quiz = jQuery.parseJSON(jQuery('.skift-quiz .skift-quiz-object').text());
 
     if ( quiz['type'] == 'trivia' ) {
-        initialize();
+        triviaQuizInit();
     } else if ( quiz['type'] == 'personality' ) {
         // the length of score is dependent upon how many personality types there are
         for (i=0; i<quiz['results'].length; i++) {
             personality_score.push(0);
         }
-        // personality quiz initialize
-        init();
-
-    } else {
-        console.log("Initializing conditional failed.");
+        personalityQuizInit();
     }
-
 });
-
