@@ -57,7 +57,7 @@ function setUpButtons() {
         // submit button click triggers nextQuestion and passes choice's data-index (via var picked)
         if (submission) {
             submission = false;
-            jQuery('#submitbutton').click(function(e){
+            jQuery('.submit-button').click(function(e){
                 e.preventDefault();
                 jQuery('.choice').off('click');
                 jQuery(this).off('click');
@@ -147,9 +147,11 @@ function nextQuestion(picked) {
         
         if (quiz.content[currentQuestion].hasOwnProperty('image') && quiz.content[currentQuestion].image !== '') {
             if (jQuery('.question-image').length === 0) {
-                jQuery(document.createElement('img')).addClass('question-image').attr('src', quiz.content[currentQuestion].image).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
+                jQuery(document.createElement('div')).addClass('question-image').css({'background-image': 'url(' + quiz.content[currentQuestion].image + ')'}).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
+                // jQuery(document.createElement('img')).addClass('question-image').attr('src', quiz.content[currentQuestion].image).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
             } else {
-                jQuery('.question-image').attr('src', quiz.content[currentQuestion].image).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
+                jQuery('.question-image').css({'background-image': 'url(' + quiz.content[currentQuestion].image + ')'}).attr('alt', htmlEncode(quiz['content'][currentQuestion]['question']));
+                // jQuery('.question-image').attr('src', quiz.content[currentQuestion].image).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
             }
         } else {
             jQuery('.question-image').remove();
@@ -214,9 +216,11 @@ function personalityNextQuestion(picked) {
         // image stuff
         if (quiz.content[currentQuestion].hasOwnProperty('image') && quiz.content[currentQuestion].image !== '') {
             if (jQuery('.question-image').length === 0) {
-                jQuery(document.createElement('img')).addClass('question-image').attr('src', quiz.content[currentQuestion].image).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
+                jQuery(document.createElement('div')).addClass('question-image').css({'background-image': 'url(' + quiz.content[currentQuestion].image + ')'}).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
+                // jQuery(document.createElement('img')).addClass('question-image').attr('src', quiz.content[currentQuestion].image).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
             } else {
-                jQuery('.question-image').attr('src', quiz.content[currentQuestion].image).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
+                jQuery('.question-image').css({'background-image': 'url(' + quiz.content[currentQuestion].image + ')'}).attr('alt', htmlEncode(quiz['content'][currentQuestion]['question']));
+                // jQuery('.question-image').attr('src', quiz.content[currentQuestion].image).attr('alt', htmlEncode(quiz.content[currentQuestion].question));
             }
         }
         else {
@@ -275,25 +279,21 @@ function personalityQuizInit() {
 
         // add image if present
         if (quiz.content[0].hasOwnProperty('image') && quiz.content[0].image !== '') {
-            jQuery(document.createElement('img'))
-            .addClass('question-image')
-            .attr('src', quiz.content[0].image)
-            .appendTo('.quiz-frame');
+            jQuery(document.createElement('div')).addClass('question-image').css({'background-image': 'url(' + quiz.content[currentQuestion].image + ')'}).attr('alt', htmlEncode(quiz.content[currentQuestion].question)).appendTo('.quiz-frame');
+
+
+
+            // jQuery(document.createElement('img')).addClass('question-image').attr('src', quiz.content[0].image).appendTo('.quiz-frame');
         }
 
         // choices block
-        jQuery(document.createElement('ul'))
-            .addClass('choices-block')
-            .appendTo('.quiz-frame');
+        jQuery(document.createElement('ul')).addClass('choices-block').appendTo('.quiz-frame');
 
         // choices
         personalityAddChoices(quiz.content[0].choices);
 
         // submit button
-        jQuery(document.createElement('div'))
-            .addClass('submit')
-            .append('<a href="#" class="submit-button">Submit Answer</a>')
-            .appendTo('.quiz-frame');
+        jQuery(document.createElement('div')).addClass('submit').append('<a href="#" class="submit-button">Submit Answer</a>').appendTo('.quiz-frame');
 
         // set up choices buttons and submit button
         personalitySetUpButtons();
